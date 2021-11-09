@@ -8,5 +8,6 @@ namespace DevForum.Models
 {
     public class ApplicationUser : IdentityUser
     {
+        public virtual Profile Profile { get; set; }
     }
 }
