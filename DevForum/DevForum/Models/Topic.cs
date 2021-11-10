@@ -14,7 +14,7 @@ namespace DevForum.Models
         public int SubTopicCount { get; set; }
         public byte[] Logo { get; set; }
 
-        public int ProfileId { get; set; }
+        public int? ProfileId { get; set; }
         public virtual Profile Profile { get; set; }
         public virtual IEnumerable<SubTopic> SubTopics { get; set; }
     }

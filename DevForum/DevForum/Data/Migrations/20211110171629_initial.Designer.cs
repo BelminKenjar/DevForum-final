@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevForum.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211109024036_initial")]
+    [Migration("20211110171629_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -84,6 +84,24 @@ namespace DevForum.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "e8b4e12d-0b5d-4ce4-87d9-e9edecc13c9f",
+                            Email = "admin@example.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "admin@example.com",
+                            NormalizedUserName = "admin",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKleoEGPXumolHCioV6BeFLlMqCvwopQ/yjyMbWkB610Dre2Nt0X1j6AWuhu3Wj8Xg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "eb1fc157-3598-4cb3-abd6-f3c49839fec1",
+                            TwoFactorEnabled = false,
+                            UserName = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("DevForum.Models.News", b =>
@@ -99,7 +117,7 @@ namespace DevForum.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ProfileId")
+                    b.Property<int?>("ProfileId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -131,13 +149,13 @@ namespace DevForum.Data.Migrations
                     b.Property<int>("LikeCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProfileId")
+                    b.Property<int?>("ProfileId")
                         .HasColumnType("int");
 
                     b.Property<int>("ReplyCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("SubTopicId")
+                    b.Property<int?>("SubTopicId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -162,10 +180,10 @@ namespace DevForum.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PostId")
+                    b.Property<int?>("PostId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProfileId")
+                    b.Property<int?>("ProfileId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -193,10 +211,10 @@ namespace DevForum.Data.Migrations
                     b.Property<DateTime>("EditedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PostId")
+                    b.Property<int?>("PostId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProfileId")
+                    b.Property<int?>("ProfileId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -218,10 +236,10 @@ namespace DevForum.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PostReplyId")
+                    b.Property<int?>("PostReplyId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProfileId")
+                    b.Property<int?>("ProfileId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -267,8 +285,8 @@ namespace DevForum.Data.Migrations
                         new
                         {
                             Id = 1,
-                            ApplicationUserId = "ID_1",
-                            CreatedAt = new DateTime(2021, 11, 9, 3, 40, 36, 132, DateTimeKind.Local).AddTicks(2512),
+                            ApplicationUserId = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
+                            CreatedAt = new DateTime(2021, 11, 10, 18, 16, 28, 964, DateTimeKind.Local).AddTicks(1600),
                             FirstName = "Amer",
                             LastName = "Hasanbegovic"
                         });
@@ -299,7 +317,7 @@ namespace DevForum.Data.Migrations
                     b.Property<string>("LinkedinUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProfileId")
+                    b.Property<int?>("ProfileId")
                         .HasColumnType("int");
 
                     b.Property<string>("TwitterUrl")
@@ -311,7 +329,8 @@ namespace DevForum.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ProfileId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[ProfileId] IS NOT NULL");
 
                     b.ToTable("ProfileDetails");
                 });
@@ -329,7 +348,7 @@ namespace DevForum.Data.Migrations
                     b.Property<int>("PostsCreated")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProfileId")
+                    b.Property<int?>("ProfileId")
                         .HasColumnType("int");
 
                     b.Property<int>("Rating")
@@ -338,7 +357,8 @@ namespace DevForum.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ProfileId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[ProfileId] IS NOT NULL");
 
                     b.ToTable("ProfileStats");
                 });
@@ -362,7 +382,7 @@ namespace DevForum.Data.Migrations
                     b.Property<int>("ProfileId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TopicId")
+                    b.Property<int?>("TopicId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -390,7 +410,7 @@ namespace DevForum.Data.Migrations
                     b.Property<byte[]>("Logo")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<int>("ProfileId")
+                    b.Property<int?>("ProfileId")
                         .HasColumnType("int");
 
                     b.Property<int>("SubTopicCount")
@@ -513,6 +533,15 @@ namespace DevForum.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "5d89570c-41f5-4230-9bac-1f97b925e2f0",
+                            ConcurrencyStamp = "208e640f-ade7-4f5b-bbd6-cc756baf75f1",
+                            Name = "Admin",
+                            NormalizedName = "admin"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -600,6 +629,13 @@ namespace DevForum.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
+                            RoleId = "5d89570c-41f5-4230-9bac-1f97b925e2f0"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -627,69 +663,51 @@ namespace DevForum.Data.Migrations
                 {
                     b.HasOne("DevForum.Models.Profile", "Profile")
                         .WithMany()
-                        .HasForeignKey("ProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProfileId");
                 });
 
             modelBuilder.Entity("DevForum.Models.Post", b =>
                 {
                     b.HasOne("DevForum.Models.Profile", "Profile")
                         .WithMany("Posts")
-                        .HasForeignKey("ProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProfileId");
 
                     b.HasOne("DevForum.Models.SubTopic", "SubTopic")
                         .WithMany("Posts")
-                        .HasForeignKey("SubTopicId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SubTopicId");
                 });
 
             modelBuilder.Entity("DevForum.Models.PostLike", b =>
                 {
                     b.HasOne("DevForum.Models.Post", "Post")
                         .WithMany("PostLikes")
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PostId");
 
                     b.HasOne("DevForum.Models.Profile", "Profile")
                         .WithMany()
-                        .HasForeignKey("ProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProfileId");
                 });
 
             modelBuilder.Entity("DevForum.Models.PostReply", b =>
                 {
                     b.HasOne("DevForum.Models.Post", "Post")
                         .WithMany("PostReplies")
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PostId");
 
                     b.HasOne("DevForum.Models.Profile", "Profile")
                         .WithMany()
-                        .HasForeignKey("ProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProfileId");
                 });
 
             modelBuilder.Entity("DevForum.Models.PostReplyLike", b =>
                 {
                     b.HasOne("DevForum.Models.PostReply", "PostReply")
                         .WithMany("PostReplyLikes")
-                        .HasForeignKey("PostReplyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PostReplyId");
 
                     b.HasOne("DevForum.Models.Profile", "Profile")
                         .WithMany()
-                        .HasForeignKey("ProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProfileId");
                 });
 
             modelBuilder.Entity("DevForum.Models.Profile", b =>
@@ -703,18 +721,14 @@ namespace DevForum.Data.Migrations
                 {
                     b.HasOne("DevForum.Models.Profile", "Profile")
                         .WithOne("ProfileDetails")
-                        .HasForeignKey("DevForum.Models.ProfileDetails", "ProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DevForum.Models.ProfileDetails", "ProfileId");
                 });
 
             modelBuilder.Entity("DevForum.Models.ProfileStats", b =>
                 {
                     b.HasOne("DevForum.Models.Profile", "Profile")
                         .WithOne("ProfileStats")
-                        .HasForeignKey("DevForum.Models.ProfileStats", "ProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DevForum.Models.ProfileStats", "ProfileId");
                 });
 
             modelBuilder.Entity("DevForum.Models.SubTopic", b =>
@@ -727,18 +741,14 @@ namespace DevForum.Data.Migrations
 
                     b.HasOne("DevForum.Models.Topic", "Topic")
                         .WithMany("SubTopics")
-                        .HasForeignKey("TopicId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TopicId");
                 });
 
             modelBuilder.Entity("DevForum.Models.Topic", b =>
                 {
                     b.HasOne("DevForum.Models.Profile", "Profile")
                         .WithMany()
-                        .HasForeignKey("ProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProfileId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

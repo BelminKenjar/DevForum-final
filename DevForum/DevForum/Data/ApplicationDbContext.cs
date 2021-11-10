@@ -34,56 +34,47 @@ namespace DevForum.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            SeedSuperUsers(builder);
+            SeedAdminUsers(builder);
             SeedProfiles(builder);
         }
 
         private void SeedProfiles(ModelBuilder builder)
         {
             builder.Entity<Profile>().HasData(
-                new Profile { Id = 1, ApplicationUserId = "ID_1", CreatedAt = DateTime.Now, FirstName = "Amer", LastName = "Hasanbegovic" }
+                new Profile { Id = 1, ApplicationUserId = "a18be9c0-aa65-4af8-bd17-00bd9344e575", CreatedAt = DateTime.Now, FirstName = "Amer", LastName = "Hasanbegovic" }
             );
         }
 
-        private async void SeedSuperUsers(ModelBuilder builder)
+        private void SeedAdminUsers(ModelBuilder builder)
         {
-            var rolesStore = new RoleStore<IdentityRole>(this);
-            var userStore = new UserStore<ApplicationUser>(this);
-
-            var user = new ApplicationUser
+            const string adminId = "a18be9c0-aa65-4af8-bd17-00bd9344e575";
+            const string roleId = "5d89570c-41f5-4230-9bac-1f97b925e2f0";
+            builder.Entity<IdentityRole>().HasData(new IdentityRole
             {
-                Id = "ID_1",
+                Id = roleId,
+                Name = "Admin",
+                NormalizedName = "admin"
+            });
+
+            var user = new ApplicationUser()
+            {
+                Id = adminId,
                 UserName = "Admin",
-                NormalizedUserName = "ADMIN",
+                NormalizedUserName = "admin",
                 Email = "admin@example.com",
+                NormalizedEmail = "admin@example.com",
                 EmailConfirmed = true,
-                LockoutEnabled = false,
                 SecurityStamp = Guid.NewGuid().ToString()
             };
-
             var hasher = new PasswordHasher<ApplicationUser>();
-            var hash = hasher.HashPassword(user, "Pass@123");
-            user.PasswordHash = hash;
-
-
-            var hasAdminRole = this.Roles.Any(roles => roles.Name == "Admin");
-            if (!hasAdminRole)
-            {
-                await rolesStore.CreateAsync(new IdentityRole
-                {
-                    Name = "Admin",
-                    NormalizedName = "ADMIN"
-                });
-            }
-
-            var hasSuperUser = this.Users.Any(u => u.NormalizedUserName == user.UserName);
-            if (!hasSuperUser)
-            {
-                await userStore.CreateAsync(user);
-                await userStore.AddToRoleAsync(user, "Admin");
-            }
-
+            user.PasswordHash = hasher.HashPassword(user, "Pass@123");
             builder.Entity<ApplicationUser>().HasData(user);
+
+            builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+            {
+                RoleId = roleId,
+                UserId = adminId
+            });
         }
     }
 }

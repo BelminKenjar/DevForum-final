@@ -218,7 +218,7 @@ namespace DevForum.Data.Migrations
                     Title = table.Column<string>(nullable: true),
                     Content = table.Column<string>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
-                    ProfileId = table.Column<int>(nullable: false)
+                    ProfileId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -228,7 +228,7 @@ namespace DevForum.Data.Migrations
                         column: x => x.ProfileId,
                         principalTable: "Profiles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -245,7 +245,7 @@ namespace DevForum.Data.Migrations
                     FacebookUrl = table.Column<string>(nullable: true),
                     TwitterUrl = table.Column<string>(nullable: true),
                     LinkedinUrl = table.Column<string>(nullable: true),
-                    ProfileId = table.Column<int>(nullable: false)
+                    ProfileId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -255,7 +255,7 @@ namespace DevForum.Data.Migrations
                         column: x => x.ProfileId,
                         principalTable: "Profiles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -267,7 +267,7 @@ namespace DevForum.Data.Migrations
                     Rating = table.Column<int>(nullable: false),
                     PostsCreated = table.Column<int>(nullable: false),
                     PostsCommented = table.Column<int>(nullable: false),
-                    ProfileId = table.Column<int>(nullable: false)
+                    ProfileId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -277,7 +277,7 @@ namespace DevForum.Data.Migrations
                         column: x => x.ProfileId,
                         principalTable: "Profiles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -291,7 +291,7 @@ namespace DevForum.Data.Migrations
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     SubTopicCount = table.Column<int>(nullable: false),
                     Logo = table.Column<byte[]>(nullable: true),
-                    ProfileId = table.Column<int>(nullable: false)
+                    ProfileId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -301,7 +301,7 @@ namespace DevForum.Data.Migrations
                         column: x => x.ProfileId,
                         principalTable: "Profiles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -313,7 +313,7 @@ namespace DevForum.Data.Migrations
                     Name = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
-                    TopicId = table.Column<int>(nullable: false),
+                    TopicId = table.Column<int>(nullable: true),
                     ProfileId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -330,7 +330,7 @@ namespace DevForum.Data.Migrations
                         column: x => x.TopicId,
                         principalTable: "Topics",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -345,8 +345,8 @@ namespace DevForum.Data.Migrations
                     EditedAt = table.Column<DateTime>(nullable: false),
                     LikeCount = table.Column<int>(nullable: false),
                     ReplyCount = table.Column<int>(nullable: false),
-                    SubTopicId = table.Column<int>(nullable: false),
-                    ProfileId = table.Column<int>(nullable: false)
+                    SubTopicId = table.Column<int>(nullable: true),
+                    ProfileId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -356,13 +356,13 @@ namespace DevForum.Data.Migrations
                         column: x => x.ProfileId,
                         principalTable: "Profiles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Posts_SubTopics_SubTopicId",
                         column: x => x.SubTopicId,
                         principalTable: "SubTopics",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -372,8 +372,8 @@ namespace DevForum.Data.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedAt = table.Column<DateTime>(nullable: false),
-                    PostId = table.Column<int>(nullable: false),
-                    ProfileId = table.Column<int>(nullable: false)
+                    PostId = table.Column<int>(nullable: true),
+                    ProfileId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -383,13 +383,13 @@ namespace DevForum.Data.Migrations
                         column: x => x.PostId,
                         principalTable: "Posts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PostLikes_Profiles_ProfileId",
                         column: x => x.ProfileId,
                         principalTable: "Profiles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -401,8 +401,8 @@ namespace DevForum.Data.Migrations
                     Content = table.Column<string>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     EditedAt = table.Column<DateTime>(nullable: false),
-                    PostId = table.Column<int>(nullable: false),
-                    ProfileId = table.Column<int>(nullable: false)
+                    PostId = table.Column<int>(nullable: true),
+                    ProfileId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -412,13 +412,13 @@ namespace DevForum.Data.Migrations
                         column: x => x.PostId,
                         principalTable: "Posts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PostReplies_Profiles_ProfileId",
                         column: x => x.ProfileId,
                         principalTable: "Profiles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -428,8 +428,8 @@ namespace DevForum.Data.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedAt = table.Column<DateTime>(nullable: false),
-                    PostReplyId = table.Column<int>(nullable: false),
-                    ProfileId = table.Column<int>(nullable: false)
+                    PostReplyId = table.Column<int>(nullable: true),
+                    ProfileId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -439,19 +439,34 @@ namespace DevForum.Data.Migrations
                         column: x => x.PostReplyId,
                         principalTable: "PostReplies",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PostReplyLikes_Profiles_ProfileId",
                         column: x => x.ProfileId,
                         principalTable: "Profiles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "5d89570c-41f5-4230-9bac-1f97b925e2f0", "208e640f-ade7-4f5b-bbd6-cc756baf75f1", "Admin", "admin" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "a18be9c0-aa65-4af8-bd17-00bd9344e575", 0, "e8b4e12d-0b5d-4ce4-87d9-e9edecc13c9f", "admin@example.com", true, false, null, "admin@example.com", "admin", "AQAAAAEAACcQAAAAEKleoEGPXumolHCioV6BeFLlMqCvwopQ/yjyMbWkB610Dre2Nt0X1j6AWuhu3Wj8Xg==", null, false, "eb1fc157-3598-4cb3-abd6-f3c49839fec1", false, "Admin" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "UserId", "RoleId" },
+                values: new object[] { "a18be9c0-aa65-4af8-bd17-00bd9344e575", "5d89570c-41f5-4230-9bac-1f97b925e2f0" });
 
             migrationBuilder.InsertData(
                 table: "Profiles",
                 columns: new[] { "Id", "ApplicationUserId", "CreatedAt", "FirstName", "Image", "LastName" },
-                values: new object[] { 1, "ID_1", new DateTime(2021, 11, 9, 3, 40, 36, 132, DateTimeKind.Local).AddTicks(2512), "Amer", null, "Hasanbegovic" });
+                values: new object[] { 1, "a18be9c0-aa65-4af8-bd17-00bd9344e575", new DateTime(2021, 11, 10, 18, 16, 28, 964, DateTimeKind.Local).AddTicks(1600), "Amer", null, "Hasanbegovic" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -562,7 +577,8 @@ namespace DevForum.Data.Migrations
                 name: "IX_ProfileDetails_ProfileId",
                 table: "ProfileDetails",
                 column: "ProfileId",
-                unique: true);
+                unique: true,
+                filter: "[ProfileId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Profiles_ApplicationUserId",
@@ -575,7 +591,8 @@ namespace DevForum.Data.Migrations
                 name: "IX_ProfileStats_ProfileId",
                 table: "ProfileStats",
                 column: "ProfileId",
-                unique: true);
+                unique: true,
+                filter: "[ProfileId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SubTopics_ProfileId",

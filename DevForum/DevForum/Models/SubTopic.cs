@@ -10,7 +10,7 @@ namespace DevForum.Models
         public string Description { get; set; }
         public DateTime CreatedAt { get; set; }
 
-        public int TopicId { get; set; }
+        public int? TopicId { get; set; }
         public virtual Topic Topic { get; set; }
         public int ProfileId { get; set; }
         public virtual Profile Profile { get; set; }

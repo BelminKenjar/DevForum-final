@@ -13,10 +13,10 @@ namespace DevForum.Models
         public int LikeCount { get; set; }
         public int ReplyCount { get; set; }
 
-        public int SubTopicId { get; set; }
+        public int? SubTopicId { get; set; }
         public virtual SubTopic SubTopic { get; set; }
         
-        public int ProfileId { get; set; }
+        public int? ProfileId { get; set; }
         public virtual Profile Profile { get; set; }
 
         public virtual IEnumerable<PostReply> PostReplies { get; set; }
