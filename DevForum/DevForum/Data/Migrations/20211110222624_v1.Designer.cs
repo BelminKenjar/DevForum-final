@@ -10,15 +10,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevForum.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211110171629_initial")]
-    partial class initial
+    [Migration("20211110222624_v1")]
+    partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.20")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("DevForum.Models.ApplicationUser", b =>
@@ -34,8 +34,8 @@ namespace DevForum.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
@@ -47,12 +47,12 @@ namespace DevForum.Data.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
@@ -70,17 +70,17 @@ namespace DevForum.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
+                        .HasDatabaseName("EmailIndex");
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasName("UserNameIndex")
+                        .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
@@ -90,17 +90,17 @@ namespace DevForum.Data.Migrations
                         {
                             Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e8b4e12d-0b5d-4ce4-87d9-e9edecc13c9f",
+                            ConcurrencyStamp = "cca276ff-527c-477a-a6e6-7325c1915e2a",
                             Email = "admin@example.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "admin@example.com",
-                            NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKleoEGPXumolHCioV6BeFLlMqCvwopQ/yjyMbWkB610Dre2Nt0X1j6AWuhu3Wj8Xg==",
+                            NormalizedEmail = "ADMIN@EXAMPLE.COM",
+                            NormalizedUserName = "ADMIN@EXAMPLE.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAktwrK8SmJNRx0MIzsYEy4tDrOvNM/Nosmk2bLABa1rw2tZfSw258+jFUousAap9A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "eb1fc157-3598-4cb3-abd6-f3c49839fec1",
+                            SecurityStamp = "b178b80a-f3e3-4b1a-a8bf-eafd46ceb73f",
                             TwoFactorEnabled = false,
-                            UserName = "Admin"
+                            UserName = "admin@example.com"
                         });
                 });
 
@@ -286,7 +286,7 @@ namespace DevForum.Data.Migrations
                         {
                             Id = 1,
                             ApplicationUserId = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
-                            CreatedAt = new DateTime(2021, 11, 10, 18, 16, 28, 964, DateTimeKind.Local).AddTicks(1600),
+                            CreatedAt = new DateTime(2021, 11, 10, 23, 26, 24, 118, DateTimeKind.Local).AddTicks(6815),
                             FirstName = "Amer",
                             LastName = "Hasanbegovic"
                         });
@@ -429,34 +429,42 @@ namespace DevForum.Data.Migrations
             modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.DeviceFlowCodes", b =>
                 {
                     b.Property<string>("UserCode")
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("ClientId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Data")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasMaxLength(50000);
+                        .HasMaxLength(50000)
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("DeviceCode")
                         .IsRequired()
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<DateTime?>("Expiration")
                         .IsRequired()
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("SessionId")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<string>("SubjectId")
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("UserCode");
 
@@ -471,39 +479,52 @@ namespace DevForum.Data.Migrations
             modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.PersistedGrant", b =>
                 {
                     b.Property<string>("Key")
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("ClientId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<DateTime?>("ConsumedTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Data")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasMaxLength(50000);
+                        .HasMaxLength(50000)
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<DateTime?>("Expiration")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("SessionId")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<string>("SubjectId")
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Type")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Key");
 
                     b.HasIndex("Expiration");
 
                     b.HasIndex("SubjectId", "ClientId", "Type");
+
+                    b.HasIndex("SubjectId", "SessionId", "Type");
 
                     b.ToTable("PersistedGrants");
                 });
@@ -518,18 +539,18 @@ namespace DevForum.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("NormalizedName")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasName("RoleNameIndex")
+                        .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
@@ -538,7 +559,7 @@ namespace DevForum.Data.Migrations
                         new
                         {
                             Id = "5d89570c-41f5-4230-9bac-1f97b925e2f0",
-                            ConcurrencyStamp = "208e640f-ade7-4f5b-bbd6-cc756baf75f1",
+                            ConcurrencyStamp = "cfdb69ae-5d70-42bf-ab8c-56aef1e9e3ee",
                             Name = "Admin",
                             NormalizedName = "admin"
                         });
@@ -595,12 +616,12 @@ namespace DevForum.Data.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -644,12 +665,12 @@ namespace DevForum.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -664,6 +685,8 @@ namespace DevForum.Data.Migrations
                     b.HasOne("DevForum.Models.Profile", "Profile")
                         .WithMany()
                         .HasForeignKey("ProfileId");
+
+                    b.Navigation("Profile");
                 });
 
             modelBuilder.Entity("DevForum.Models.Post", b =>
@@ -675,6 +698,10 @@ namespace DevForum.Data.Migrations
                     b.HasOne("DevForum.Models.SubTopic", "SubTopic")
                         .WithMany("Posts")
                         .HasForeignKey("SubTopicId");
+
+                    b.Navigation("Profile");
+
+                    b.Navigation("SubTopic");
                 });
 
             modelBuilder.Entity("DevForum.Models.PostLike", b =>
@@ -686,6 +713,10 @@ namespace DevForum.Data.Migrations
                     b.HasOne("DevForum.Models.Profile", "Profile")
                         .WithMany()
                         .HasForeignKey("ProfileId");
+
+                    b.Navigation("Post");
+
+                    b.Navigation("Profile");
                 });
 
             modelBuilder.Entity("DevForum.Models.PostReply", b =>
@@ -697,6 +728,10 @@ namespace DevForum.Data.Migrations
                     b.HasOne("DevForum.Models.Profile", "Profile")
                         .WithMany()
                         .HasForeignKey("ProfileId");
+
+                    b.Navigation("Post");
+
+                    b.Navigation("Profile");
                 });
 
             modelBuilder.Entity("DevForum.Models.PostReplyLike", b =>
@@ -708,6 +743,10 @@ namespace DevForum.Data.Migrations
                     b.HasOne("DevForum.Models.Profile", "Profile")
                         .WithMany()
                         .HasForeignKey("ProfileId");
+
+                    b.Navigation("PostReply");
+
+                    b.Navigation("Profile");
                 });
 
             modelBuilder.Entity("DevForum.Models.Profile", b =>
@@ -715,6 +754,8 @@ namespace DevForum.Data.Migrations
                     b.HasOne("DevForum.Models.ApplicationUser", "ApplicationUser")
                         .WithOne("Profile")
                         .HasForeignKey("DevForum.Models.Profile", "ApplicationUserId");
+
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("DevForum.Models.ProfileDetails", b =>
@@ -722,6 +763,8 @@ namespace DevForum.Data.Migrations
                     b.HasOne("DevForum.Models.Profile", "Profile")
                         .WithOne("ProfileDetails")
                         .HasForeignKey("DevForum.Models.ProfileDetails", "ProfileId");
+
+                    b.Navigation("Profile");
                 });
 
             modelBuilder.Entity("DevForum.Models.ProfileStats", b =>
@@ -729,6 +772,8 @@ namespace DevForum.Data.Migrations
                     b.HasOne("DevForum.Models.Profile", "Profile")
                         .WithOne("ProfileStats")
                         .HasForeignKey("DevForum.Models.ProfileStats", "ProfileId");
+
+                    b.Navigation("Profile");
                 });
 
             modelBuilder.Entity("DevForum.Models.SubTopic", b =>
@@ -742,6 +787,10 @@ namespace DevForum.Data.Migrations
                     b.HasOne("DevForum.Models.Topic", "Topic")
                         .WithMany("SubTopics")
                         .HasForeignKey("TopicId");
+
+                    b.Navigation("Profile");
+
+                    b.Navigation("Topic");
                 });
 
             modelBuilder.Entity("DevForum.Models.Topic", b =>
@@ -749,6 +798,8 @@ namespace DevForum.Data.Migrations
                     b.HasOne("DevForum.Models.Profile", "Profile")
                         .WithMany()
                         .HasForeignKey("ProfileId");
+
+                    b.Navigation("Profile");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -800,6 +851,42 @@ namespace DevForum.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("DevForum.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("Profile");
+                });
+
+            modelBuilder.Entity("DevForum.Models.Post", b =>
+                {
+                    b.Navigation("PostLikes");
+
+                    b.Navigation("PostReplies");
+                });
+
+            modelBuilder.Entity("DevForum.Models.PostReply", b =>
+                {
+                    b.Navigation("PostReplyLikes");
+                });
+
+            modelBuilder.Entity("DevForum.Models.Profile", b =>
+                {
+                    b.Navigation("Posts");
+
+                    b.Navigation("ProfileDetails");
+
+                    b.Navigation("ProfileStats");
+                });
+
+            modelBuilder.Entity("DevForum.Models.SubTopic", b =>
+                {
+                    b.Navigation("Posts");
+                });
+
+            modelBuilder.Entity("DevForum.Models.Topic", b =>
+                {
+                    b.Navigation("SubTopics");
                 });
 #pragma warning restore 612, 618
         }

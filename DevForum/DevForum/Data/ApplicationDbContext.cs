@@ -59,10 +59,10 @@ namespace DevForum.Data
             var user = new ApplicationUser()
             {
                 Id = adminId,
-                UserName = "Admin",
-                NormalizedUserName = "admin",
+                UserName = "admin@example.com",
+                NormalizedUserName = "ADMIN@EXAMPLE.COM",
                 Email = "admin@example.com",
-                NormalizedEmail = "admin@example.com",
+                NormalizedEmail = "ADMIN@EXAMPLE.COM",
                 EmailConfirmed = true,
                 SecurityStamp = Guid.NewGuid().ToString()
             };
