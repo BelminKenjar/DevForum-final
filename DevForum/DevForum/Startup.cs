@@ -1,5 +1,7 @@
 using DevForum.Data;
 using DevForum.Models;
+using DevForum.Services;
+using DevForum.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace DevForum
 {
@@ -30,6 +33,7 @@ namespace DevForum
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
+
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -45,6 +49,10 @@ namespace DevForum
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddAutoMapper(typeof(Startup));
+
+            services.AddScoped<INewsService, NewsService>();            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
