@@ -11,7 +11,7 @@ namespace DevForum.Models
         public string Title { get; set; }
         public string Content { get; set; }
         public DateTime CreatedAt { get; set; }
-
+        public DateTime EditedAt { get; set; }
         public int? ProfileId { get; set; }
         public virtual Profile Profile { get; set; }
     }
