@@ -52,7 +52,8 @@ namespace DevForum
 
             services.AddAutoMapper(typeof(Startup));
 
-            services.AddScoped<INewsService, NewsService>();            
+            services.AddScoped<INewsService, NewsService>();
+            services.AddScoped<IProfileService, ProfileService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

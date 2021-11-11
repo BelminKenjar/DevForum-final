@@ -1,5 +1,6 @@
 ﻿using DevForum.Models;
 using DevForum.ViewModels.News;
+using DevForum.ViewModels.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,11 @@ namespace DevForum.Map
             CreateMap<News, NewsViewModel>();
             CreateMap<NewsInsertModel, News>();
             CreateMap<NewsUpdateModel, News>();
+
+            //profile
+            CreateMap<Profile, ProfileViewModel>();
+            CreateMap<ProfileInsertModel, Profile>();
+            CreateMap<ProfileUpdateModel, Profile>();
         }
     }
 }
