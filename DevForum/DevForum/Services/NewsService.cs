@@ -3,6 +3,7 @@ using DevForum.Data;
 using DevForum.Models;
 using DevForum.Services.Interfaces;
 using DevForum.ViewModels.News;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace DevForum.Services
         }
         public IEnumerable<NewsViewModel> Get()
         {
-            var res = _applicationDbContext.Set<News>().ToList();
+            var res = _applicationDbContext.Set<News>().Include(x => x.Profile).ToList();
             return _mapper.Map<IEnumerable<NewsViewModel>>(res);
         }
 
