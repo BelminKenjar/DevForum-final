@@ -9,6 +9,6 @@ namespace DevForum.ViewModels.News
     {
         public string Title { get; set; }
         public string Content { get; set; }
-        public DateTime EditedAt { get; set; }
+        public DateTime EditedAt { get; set; } = DateTime.Now;
     }
 }
