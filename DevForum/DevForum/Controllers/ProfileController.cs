@@ -23,7 +23,7 @@ namespace DevForum.Controllers
             _profileService = profileService;
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize]
         [HttpGet]
         public IEnumerable<ProfileViewModel> Get()
         {
