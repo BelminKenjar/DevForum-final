@@ -36,14 +36,6 @@ namespace DevForum.Controllers
             return _profileService.GetById(id);
         }
 
-        [HttpPost]
-        public async Task<ProfileViewModel> Insert(ProfileInsertModel model)
-        {
-            string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            model.ApplicationUserId = id;
-            return await _profileService.Insert(model);
-        }
-
         [HttpPost("{id}")]
         public async Task<ProfileViewModel> Update(int id, ProfileUpdateModel model)
         {

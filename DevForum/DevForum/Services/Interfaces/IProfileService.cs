@@ -10,7 +10,6 @@ namespace DevForum.Services.Interfaces
     {
         IEnumerable<ProfileViewModel> Get();
         ProfileViewModel GetById(int id);
-        Task<ProfileViewModel> Insert(ProfileInsertModel model);
         Task<ProfileViewModel> Update(int id, ProfileUpdateModel model);
     }
 }

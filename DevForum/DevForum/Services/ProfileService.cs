@@ -38,14 +38,6 @@ namespace DevForum.Services
             return _mapper.Map<ProfileViewModel>(res);
         }
 
-        public async Task<ProfileViewModel> Insert(ProfileInsertModel model)
-        {
-            var entity = _mapper.Map<Models.Profile>(model);
-            await _applicationDbContext.AddAsync(entity);
-            await _applicationDbContext.SaveChangesAsync();
-            return _mapper.Map<ProfileViewModel>(entity);
-        }
-
         public async Task<ProfileViewModel> Update(int id, ProfileUpdateModel model)
         {
             var entity = _applicationDbContext.Set<Models.Profile>().Find(id);
