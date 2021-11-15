@@ -1,4 +1,6 @@
 ﻿using DevForum.Models;
+using DevForum.ViewModels.ProfileDetails;
+using DevForum.ViewModels.ProfileStats;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +16,7 @@ namespace DevForum.ViewModels.Profile
         public byte[] Image { get; set; }
         public DateTime CreatedAt { get; set; }
         public string ApplicationUserId { get; set; }
-        //public int? ProfileDetailsViewModel ProfileDetails { get; set; }
-        //public int? ProfileDetailsViewModel ProfileDetails { get; set; }
-        //public int? ProfileDetailsViewModel ProfileDetails { get; set; }
-    }
+        public ProfileDetailsViewModel ProfileDetails { get; set; }
+        public ProfileStatsViewModel ProfileStats { get; set; }
+}
 }
