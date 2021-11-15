@@ -96,11 +96,20 @@ namespace DevForum.Areas.Identity.Pages.Account
                     ApplicationUserId = user.Id, 
                     CreatedAt = DateTime.Now 
                 };
+                var profileStats = new ProfileStats
+                {
+                    PostsCommented = 0,
+                    PostsCreated = 0,
+                    Rating = 0,
+                    ProfileId = profile.Id
+                };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
                     user.Profile = profile;
+                    user.Profile.ProfileStats = profileStats;
                     await _applcationDbContext.AddAsync(profile);
+                    await _applcationDbContext.AddAsync(profileStats);
                     await _applcationDbContext.SaveChangesAsync();
                     _logger.LogInformation("User created a new account with password.");
 
