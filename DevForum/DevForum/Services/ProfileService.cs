@@ -38,6 +38,16 @@ namespace DevForum.Services
             return _mapper.Map<ProfileViewModel>(res);
         }
 
+        public ProfileViewModel GetCurrentProfile(string userId)
+        {
+            var res = _applicationDbContext.Set<Models.Profile>()
+                      .Include(x => x.ApplicationUser)
+                      .Include(x => x.ProfileDetails)
+                      .Include(x => x.ProfileStats)
+                      .Include(x => x.Posts).FirstOrDefault(x => x.ApplicationUserId == userId);
+            return _mapper.Map<ProfileViewModel>(res);
+        }
+
         public async Task<ProfileViewModel> Update(int id, ProfileUpdateModel model)
         {
             var entity = _applicationDbContext.Set<Models.Profile>().Find(id);

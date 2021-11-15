@@ -11,5 +11,6 @@ namespace DevForum.Services.Interfaces
         IEnumerable<ProfileViewModel> Get();
         ProfileViewModel GetById(int id);
         Task<ProfileViewModel> Update(int id, ProfileUpdateModel model);
+        ProfileViewModel GetCurrentProfile(string userId);
     }
 }
