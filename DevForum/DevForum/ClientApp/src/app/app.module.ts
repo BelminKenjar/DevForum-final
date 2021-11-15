@@ -30,8 +30,7 @@ import { ProfileComponent } from './profile/profile.component';
     ApiAuthorizationModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
+      { path: 'profile', component: ProfileComponent, canActivate: [AuthorizeGuard] }
     ])
   ],
   providers: [
