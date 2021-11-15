@@ -36,6 +36,34 @@ namespace DevForum.Data
             base.OnModelCreating(builder);
             SeedAdminUsers(builder);
             SeedProfiles(builder);
+            SeedProfileDetails(builder);
+            SeedProfileStats(builder);
+        }
+
+        private void SeedProfileStats(ModelBuilder builder)
+        {
+            builder.Entity<ProfileStats>().HasData(
+                new ProfileStats { Id = 1, ProfileId = 1, PostsCommented = 3, PostsCreated = 2, Rating = 13 }
+                );
+        }
+
+        private void SeedProfileDetails(ModelBuilder builder)
+        {
+            builder.Entity<ProfileDetails>().HasData(
+                new ProfileDetails
+                {
+                    Id = 1,
+                    Age = 32,
+                    City = "Sanski Most",
+                    Country = "BiH",
+                    GithubUrl = "https://github.com",
+                    FacebookUrl = "https://facebook.com",
+                    LinkedinUrl = "https://linkedin.com",
+                    ProfileId = 1,
+                    TwitterUrl = "https://twitter.com",
+                    Website = "https://googla.ba"
+                }
+                );
         }
 
         private void SeedProfiles(ModelBuilder builder)
