@@ -13,6 +13,8 @@ import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.
 import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 import { ProfileComponent } from './profile/profile.component';
+import { ProfileDetailsComponent } from './profile-details/profile-details.component';
+import { ProfileStatsComponent } from './profile-stats/profile-stats.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { ProfileComponent } from './profile/profile.component';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProfileDetailsComponent,
+    ProfileStatsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
