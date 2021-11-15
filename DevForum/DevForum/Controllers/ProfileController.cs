@@ -19,11 +19,11 @@ namespace DevForum.Controllers
     public class ProfileController : ControllerBase
     {
         private IProfileService _profileService;
-        private UserManager<ApplicationUser> _userManger;
-        public ProfileController(IProfileService profileService, UserManager<ApplicationUser> userManager)
+        private IHttpContextAccessor _httpContextAccessor;
+        public ProfileController(IProfileService profileService, IHttpContextAccessor httpContextAccessor)
         {
             _profileService = profileService;
-            _userManger = userManager;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [Authorize]
@@ -46,11 +46,11 @@ namespace DevForum.Controllers
         }
 
         [Authorize]
-        [HttpGet]
+        [HttpGet("current")]
         public ProfileViewModel GetUserProfile()
         {
-            var user = _userManger.GetUserAsync(User).Result;
-            return _profileService.GetCurrentProfile(user.Id);
+            var userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _profileService.GetCurrentProfile(userId);
         }
     }
 }

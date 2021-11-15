@@ -1,1 +1,9 @@
-<p>profile-stats works!</p>
+<div *ngIf="profileStats" class="text-center mt-3" style="font-size: 1.4rem">
+  <h4>Profile stats</h4>
+  <p class="mt-5">Rating</p>
+  <p><i class="fa fa-star"></i> {{profileStats.rating}}</p>
+  <p>Posts created</p>
+  <p><i class="fa fa-plus"></i> {{profileStats.postsCreated}}</p>
+  <p>Posts commented</p>
+  <p><i class="fa fa-comments"></i> {{profileStats.postsCommented}}</p>
+</div>

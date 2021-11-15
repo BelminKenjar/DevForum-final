@@ -33,7 +33,10 @@ namespace DevForum
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("CorsPolicy", c => c.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            });
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -62,7 +65,7 @@ namespace DevForum
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
+                app.UseCors();
             }
             else
             {

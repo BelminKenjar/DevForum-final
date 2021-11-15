@@ -1,1 +1,19 @@
-<p>profile-details works!</p>
+<div *ngIf="profileDetails" div class="text-center">
+  <h4>Details</h4>
+  <div style="font-size: 1.3rem" class="mt-1">
+    <p *ngIf="profileDetails.age">Age: {{profileDetails.age}}</p>
+    <p *ngIf="profileDetails.city">City: {{profileDetails.city}}</p>
+    <p *ngIf="profileDetails.country">Country: {{profileDetails.country}}</p>
+  </div>
+  <hr />
+  <div class="mt-1">
+    <p><i *ngIf="profileDetails.website" class="fa fa-globe"><a href="{{profileDetails.website}}"> Website</a></i></p>
+    <p><i *ngIf="profileDetails.githubUrl" class="fab fa-github"><a href="{{profileDetails.website}}"> Github</a></i></p>
+    <p><i *ngIf="profileDetails.twitterUrl" class="fab fa-twitter"><a href="{{profileDetails.website}}"> Twitter</a></i></p>
+    <p><i *ngIf="profileDetails.facebookUrl" class="fab fa-facebook"><a href="{{profileDetails.website}}"> Facebook</a></i></p>
+    <p><i *ngIf="profileDetails.linkedinUrl" class="fab fa-linkedin"><a href="{{profileDetails.website}}"> Linkedin</a></i></p>
+  </div>
+</div>
+<!--<div *ngIf="profileDetails" class="mt-5 mx-auto">
+  <button class="btn btn-primary">Edit details</button>
+</div>-->
