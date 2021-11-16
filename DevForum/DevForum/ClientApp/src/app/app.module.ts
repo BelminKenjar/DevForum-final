@@ -15,6 +15,7 @@ import { AuthorizeInterceptor } from 'src/api-authorization/authorize.intercepto
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileDetailsComponent } from './profile-details/profile-details.component';
 import { ProfileStatsComponent } from './profile-stats/profile-stats.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ProfileStatsComponent } from './profile-stats/profile-stats.component';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    NgxSpinnerModule,
     ApiAuthorizationModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },

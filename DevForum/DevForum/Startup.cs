@@ -46,6 +46,7 @@ namespace DevForum
             services.AddAuthentication()
                 .AddIdentityServerJwt();
             services.AddControllersWithViews();
+            services.AddControllers().AddNewtonsoftJson();
             services.AddRazorPages();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
