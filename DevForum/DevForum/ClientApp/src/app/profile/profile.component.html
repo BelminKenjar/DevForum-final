@@ -20,7 +20,7 @@
 </div>
 <div class="row mt-4 mb-5" *ngIf="currentProfile">
   <div class="col-6 border shadow-sm p-3">
-    <app-profile-details [profileDetails]="currentProfile.profileDetails"></app-profile-details>
+    <app-profile-details [profileId]="currentProfile.id" [profileDetails]="currentProfile.profileDetails"></app-profile-details>
   </div>
   <div class="col-6 border shadow-sm p-3">
     <app-profile-stats [profileStats]="currentProfile.profileStats"></app-profile-stats>

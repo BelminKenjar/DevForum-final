@@ -26,6 +26,8 @@ namespace DevForum.Map
 
             //profile details
             CreateMap<ProfileDetails, ProfileDetailsViewModel>();
+            CreateMap<ProfileDetailsInsertModel, ProfileDetails>();
+            CreateMap<ProfileDetailsUpdateModel, ProfileDetails>();
 
             //profile stats
             CreateMap<ProfileStats, ProfileStatsViewModel>();

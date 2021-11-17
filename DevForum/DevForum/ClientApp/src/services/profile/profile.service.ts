@@ -7,12 +7,18 @@ import { environment } from "../../environments/environment";
   providedIn: "root",
 })
 export class ProfileService {
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient) { }
 
   GetUserProfile(): Observable<any> {
     return this._http.get(`${environment.apiUrl}/Profile/current`);
   }
   UpdateProfile(id: any, model: any): Observable<any> {
     return this._http.post(`${environment.apiUrl}/Profile/${id}`, model);
+  }
+  UpdateProfileDetails(id: any, model: any): Observable<any> {
+    return this._http.post(`${environment.apiUrl}/ProfileDetails/${id}`, model);
+  }
+  InsertProfileDetails(model: any): Observable<any> {
+    return this._http.post(`${environment.apiUrl}/ProfileDetails`, model);
   }
 }

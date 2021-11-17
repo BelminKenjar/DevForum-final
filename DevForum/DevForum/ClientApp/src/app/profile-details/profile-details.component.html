@@ -1,5 +1,9 @@
+<div *ngIf="!profileDetails" class="mt-5">
+  <button class="btn btn-primary" (click)="openMyModal(mymodal, profileDetails)">Add details</button>
+</div>
 <div *ngIf="profileDetails" div class="text-center">
-  <h4>Details</h4>
+  <h4>Details <a (click)="openMyModal(mymodal, profileDetails)">Edit</a></h4>
+
   <div style="font-size: 1.3rem" class="mt-1">
     <p *ngIf="profileDetails.age">Age: {{profileDetails.age}}</p>
     <p *ngIf="profileDetails.city">City: {{profileDetails.city}}</p>
@@ -14,6 +18,89 @@
     <p><i *ngIf="profileDetails.linkedinUrl" class="fab fa-linkedin"><a href="{{profileDetails.website}}"> Linkedin</a></i></p>
   </div>
 </div>
-<!--<div *ngIf="profileDetails" class="mt-5 mx-auto">
-  <button class="btn btn-primary">Edit details</button>
-</div>-->
+
+<ng-template #mymodal let-modal>
+  <div class="modal-content">
+    <div class="modal-header">
+      <div style="float: left">
+        <h4 class="modal-title" id="exampleModalLabel">
+          Edit profile details
+        </h4>
+      </div>
+      <div style="float: right">
+        <button type="button"
+                class="close btn"
+                data-dismiss="modal"
+                aria-label="Close"
+                (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true"><i class="fa fa-times fa-2x"></i></span>
+        </button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="detailsForm" (ngSubmit)="onSubmit()">
+        <div class="form-floating mb-3">
+          <input type="text"
+                 class="form-control"
+                 placeholder="Age"
+                 formControlName="age"/>
+          <label for="floatingAge" class="text-muted">Age</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text"
+                 class="form-control"
+                 placeholder="City"
+                 formControlName="city"/>
+          <label for="floatingCity" class="text-muted">City</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text"
+                 class="form-control"
+                 placeholder="Country"
+                 formControlName="country"/>
+          <label for="floatingCountry" class="text-muted">Country</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text"
+                 class="form-control"
+                 placeholder="Github"
+                 formControlName="githubUrl"/>
+          <label for="floatingGithub" class="text-muted">Github</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text"
+                 class="form-control"
+                 placeholder="Linkedin"
+                 formControlName="linkedinUrl"/>
+          <label for="floatingLinkedin" class="text-muted">Linkedin</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text"
+                 class="form-control"
+                 placeholder="Facebook"
+                 formControlName="facebookUrl"/>
+          <label for="floatingFacebook" class="text-muted">Facebook</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text"
+                 class="form-control"
+                 placeholder="Twitter"
+                 formControlName="twitterUrl"/>
+          <label for="floatingTwitter" class="text-muted">Twitter</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text"
+                 class="form-control"
+                 placeholder="Website"
+                 formControlName="websiteUrl"/>
+          <label for="floatingWebsite" class="text-muted">Website</label>
+        </div>
+        <div class="d-grid">
+          <button class="btn btn-primary btn-login fw-bold p-2 mt-3" type="submit">
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>

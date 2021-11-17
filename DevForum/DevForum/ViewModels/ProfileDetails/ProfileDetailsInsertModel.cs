@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace DevForum.ViewModels.ProfileDetails
 {
-    public class ProfileDetailsViewModel
+    public class ProfileDetailsInsertModel
     {
-        public int Id { get; set; }
         public int Age { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
