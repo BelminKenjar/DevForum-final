@@ -17,49 +17,6 @@ export class ProfileDetailsComponent implements OnInit {
   };
   closeResult: string;
 
-  constructor(private modalService: NgbModal, private formBuilder: FormBuilder, private profileService: ProfileService) { }
-
-  ngOnInit() {
-  }
-
-  //modal
-  @Input() details: any
-  openMyModal(content: any, details: any) {
-    if (details != null) {
-    this.details = details;
-    this.detailsForm.patchValue({
-      age: details.age,
-      city: details.city,
-      country: details.country,
-      githubUrl: details.githubUrl,
-      facebookUrl: details.facebookUrl,
-      linkedinUrl: details.linkedinUrl,
-      websiteUrl: details.website,
-      twitterUrl: details.twitterUrl
-    })
-    }
-    this.modalService.open(content, this.modalOptions).result.then(
-      (result) => {
-        console.log(result);
-        this.closeResult = `Closed with: ${result}`;
-      },
-      (reason) => {
-        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      }
-    );
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return "by pressing ESC";
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return "by clicking on a backdrop";
-    } else {
-      return `with: ${reason}`;
-    }
-  }
-
-  //edit details form
   detailsForm = this.formBuilder.group({
     age: [''],
     city: [''],
@@ -70,6 +27,24 @@ export class ProfileDetailsComponent implements OnInit {
     websiteUrl: [''],
     linkedinUrl: ['']
   })
+
+  constructor(private modalService: NgbModal, private formBuilder: FormBuilder, private profileService: ProfileService) { }
+
+  ngOnInit() {
+    if (this.profileDetails != null) {
+      //this.details = details;
+      this.detailsForm.patchValue({
+        age: this.profileDetails.age,
+        city: this.profileDetails.city,
+        country: this.profileDetails.country,
+        githubUrl: this.profileDetails.githubUrl,
+        facebookUrl: this.profileDetails.facebookUrl,
+        linkedinUrl: this.profileDetails.linkedinUrl,
+        websiteUrl: this.profileDetails.website,
+        twitterUrl: this.profileDetails.twitterUrl
+      })
+    }
+  }
 
   onSubmit = () => {
     let updateDetails = {
@@ -83,11 +58,8 @@ export class ProfileDetailsComponent implements OnInit {
       LinkedinUrl: this.detailsForm.get('linkedinUrl').value,
       ProfileId: this.profileId
     }
-    if (this.details == null) {
-      console.log("null");
-    }
-    if (this.details != null) {
-      this.profileService.UpdateProfileDetails(this.details.id, updateDetails).subscribe(data => {
+    if (this.profileDetails != null) {
+      this.profileService.UpdateProfileDetails(this.profileDetails.id, updateDetails).subscribe(data => {
         if (data)
           window.location.reload();
       })
@@ -101,8 +73,3 @@ export class ProfileDetailsComponent implements OnInit {
     }
   }
 }
-
-
-
-
-

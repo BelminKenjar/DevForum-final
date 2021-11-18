@@ -1,28 +1,51 @@
 <ngx-spinner></ngx-spinner>
-<div class="row mt-3">
-  <div class="col-12 mb-3 text-center" style="font-size: 2rem; font-weight: bold;">
-    <div *ngIf="currentProfile">
-      {{currentProfile.firstName}} {{currentProfile.lastName}}
-    </div>
-    <hr />
-  </div>
-  <div class="col-12">
-    <div class="col-4 mx-auto">
-      <div *ngIf="currentProfile; else elseBlock">
-        <img class="rounded-circle border" src="data:image/jpeg;base64,{{currentProfile.image}}" style="width: 100%; height: 300px" />
+<div class="main-body mt-5" *ngIf="currentProfile">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex flex-column align-items-center text-center">
+            <img *ngIf="currentProfile.image" src="data:image/jpeg;base64,{{currentProfile.image}}" alt="" class="rounded-circle p-1 bg-primary" width="180" height="180">
+            <img *ngIf="!currentProfile.image"
+                 src="../../assets/defaultUserImage.png"
+                 alt="" class="rounded-circle p-1 bg-primary" width="180" height="180">
+            <div class="mt-2">
+              <label class="btn btn-sm btn-primary">
+                Upload Image <input type="file" hidden (change)="FileInputChange($event)">
+              </label>
+            </div>
+            <div class="mt-3">
+              <h4>{{currentProfile.firstName}} {{currentProfile.lastName}}</h4>
+            </div>
+            <div class="mt-2" style="font-size:1.3rem" *ngIf="currentProfile.profileDetails">
+              <span *ngIf="currentProfile.profileDetails.website"><a href="{{currentProfile.profileDetails.website}}" target="_blank"><i class="fa fa-globe"></i></a></span>
+              <span *ngIf="currentProfile.profileDetails.githubUrl"><a href="{{currentProfile.profileDetails.githubUrl}}" target="_blank"><i class="fab fa-github"></i></a></span>
+              <span *ngIf="currentProfile.profileDetails.linkedinUrl"><a href="{{currentProfile.profileDetails.linkedinUrl}}" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+              <span *ngIf="currentProfile.profileDetails.facebookUrl"><a href="{{currentProfile.profileDetails.facebookUrl}}" target="_blank"><i class="fab fa-facebook"></i></a></span>
+              <span *ngIf="currentProfile.profileDetails.twitterUrl"><a href="{{currentProfile.profileDetails.twitterUrl}}" target="_blank"><i class="fab fa-twitter"></i></a></span>
+            </div>
+          </div>
+          <hr class="my-4">
+          <app-profile-stats [profileStats]="currentProfile.profileStats">
+          </app-profile-stats>
+        </div>
       </div>
     </div>
-    <div class="col-3 mx-auto mt-4" *ngIf="currentProfile">
-      <p class="text-center" (click)="IsEdit()" style="color: cornflowerblue; font-size: 1.3rem">Edit</p>
-      <input *ngIf="isEdit" type="file" accept="image/*" (change)="FileInputChange($event)">
+    <div class="col-lg-8">
+      <app-profile-details [profileDetails]="currentProfile.profileDetails" [profileId]="currentProfile.id"></app-profile-details>
     </div>
   </div>
-</div>
-<div class="row mt-4 mb-5" *ngIf="currentProfile">
-  <div class="col-6 border shadow-sm p-3">
-    <app-profile-details [profileId]="currentProfile.id" [profileDetails]="currentProfile.profileDetails"></app-profile-details>
-  </div>
-  <div class="col-6 border shadow-sm p-3">
-    <app-profile-stats [profileStats]="currentProfile.profileStats"></app-profile-stats>
+  <div class="row mb-5">
+    <div class="col-lg-4">
+    </div>
+    <div class="col-lg-8">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">Delete account</h3>
+          <p class="card-text">Delete your DevForum profile permanently. All your data will be erased.</p>
+          <button class="btn btn-danger">Delete account</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

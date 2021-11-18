@@ -1,9 +1,14 @@
-<div *ngIf="profileStats" class="text-center mt-3" style="font-size: 1.4rem">
-  <h4>Profile stats</h4>
-  <p class="mt-5">Rating</p>
-  <p><i class="fa fa-star"></i> {{profileStats.rating}}</p>
-  <p>Posts created</p>
-  <p><i class="fa fa-plus"></i> {{profileStats.postsCreated}}</p>
-  <p>Posts commented</p>
-  <p><i class="fa fa-comments"></i> {{profileStats.postsCommented}}</p>
-</div>
+<ul *ngIf="profileStats" class="list-group list-group-flush text-center">
+  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+    <h6>Rating</h6>
+    <p>{{profileStats.rating}}</p>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+    <h6>Posts created</h6>
+    <p>{{profileStats.postsCreated}}</p>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+    <h6>Posts commented</h6>
+    <p>{{profileStats.postsCommented}}</p>
+  </li>
+</ul>

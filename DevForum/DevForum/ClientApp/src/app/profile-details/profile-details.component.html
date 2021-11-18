@@ -1,106 +1,108 @@
-<div *ngIf="!profileDetails" class="mt-5">
-  <button class="btn btn-primary" (click)="openMyModal(mymodal, profileDetails)">Add details</button>
-</div>
-<div *ngIf="profileDetails" div class="text-center">
-  <h4>Details <a (click)="openMyModal(mymodal, profileDetails)">Edit</a></h4>
-
-  <div style="font-size: 1.3rem" class="mt-1">
-    <p *ngIf="profileDetails.age">Age: {{profileDetails.age}}</p>
-    <p *ngIf="profileDetails.city">City: {{profileDetails.city}}</p>
-    <p *ngIf="profileDetails.country">Country: {{profileDetails.country}}</p>
-  </div>
-  <hr />
-  <div class="mt-1">
-    <p><i *ngIf="profileDetails.website" class="fa fa-globe"><a href="{{profileDetails.website}}"> Website</a></i></p>
-    <p><i *ngIf="profileDetails.githubUrl" class="fab fa-github"><a href="{{profileDetails.website}}"> Github</a></i></p>
-    <p><i *ngIf="profileDetails.twitterUrl" class="fab fa-twitter"><a href="{{profileDetails.website}}"> Twitter</a></i></p>
-    <p><i *ngIf="profileDetails.facebookUrl" class="fab fa-facebook"><a href="{{profileDetails.website}}"> Facebook</a></i></p>
-    <p><i *ngIf="profileDetails.linkedinUrl" class="fab fa-linkedin"><a href="{{profileDetails.website}}"> Linkedin</a></i></p>
-  </div>
-</div>
-
-<ng-template #mymodal let-modal>
-  <div class="modal-content">
-    <div class="modal-header">
-      <div style="float: left">
-        <h4 class="modal-title" id="exampleModalLabel">
-          Edit profile details
-        </h4>
+<div class="card" *ngIf="profileDetails || !profileDetails">
+  <div class="card-body">
+    <div class="row">
+      <div class="pl-4">
+        <h4>Edit profile details</h4>
       </div>
-      <div style="float: right">
-        <button type="button"
-                class="close btn"
-                data-dismiss="modal"
-                aria-label="Close"
-                (click)="modal.dismiss('Cross click')">
-          <span aria-hidden="true"><i class="fa fa-times fa-2x"></i></span>
-        </button>
-      </div>
-    </div>
-    <div class="modal-body">
-      <form [formGroup]="detailsForm" (ngSubmit)="onSubmit()">
-        <div class="form-floating mb-3">
-          <input type="text"
-                 class="form-control"
-                 placeholder="Age"
-                 formControlName="age"/>
-          <label for="floatingAge" class="text-muted">Age</label>
+      <form [formGroup]="detailsForm" (ngSubmit)="onSubmit()" class="p-4" style="width: 100%;">
+        <div class="row mb-3">
+          <div class="col-sm-3">
+            <h6 class="mb-0 mt-2">Age</h6>
+          </div>
+          <div class="form-floating col-sm-9">
+            <input type="text"
+                   class="form-control"
+                   placeholder="Age"
+                   formControlName="age" />
+          </div>
         </div>
-        <div class="form-floating mb-3">
-          <input type="text"
-                 class="form-control"
-                 placeholder="City"
-                 formControlName="city"/>
-          <label for="floatingCity" class="text-muted">City</label>
+        <div class="row mb-3">
+          <div class="col-sm-3">
+            <h6 class="mb-0 mt-2">City</h6>
+          </div>
+          <div class="form-floating col-sm-9">
+            <input type="text"
+                   class="form-control"
+                   placeholder="City"
+                   formControlName="city" />
+          </div>
         </div>
-        <div class="form-floating mb-3">
-          <input type="text"
-                 class="form-control"
-                 placeholder="Country"
-                 formControlName="country"/>
-          <label for="floatingCountry" class="text-muted">Country</label>
+        <div class="row mb-3">
+          <div class="col-sm-3">
+            <h6 class="mb-0 mt-2">Country</h6>
+          </div>
+          <div class="form-floating col-sm-9">
+            <input type="text"
+                   class="form-control"
+                   placeholder="Country"
+                   formControlName="country" />
+          </div>
         </div>
-        <div class="form-floating mb-3">
-          <input type="text"
-                 class="form-control"
-                 placeholder="Github"
-                 formControlName="githubUrl"/>
-          <label for="floatingGithub" class="text-muted">Github</label>
+        <div class="row mb-3">
+          <div class="col-sm-3">
+            <h6 class="mb-0 mt-2">Github</h6>
+          </div>
+          <div class="form-floating col-sm-9">
+            <input type="text"
+                   class="form-control"
+                   placeholder="Github"
+                   formControlName="githubUrl" />
+          </div>
         </div>
-        <div class="form-floating mb-3">
-          <input type="text"
-                 class="form-control"
-                 placeholder="Linkedin"
-                 formControlName="linkedinUrl"/>
-          <label for="floatingLinkedin" class="text-muted">Linkedin</label>
+        <div class="row mb-3">
+          <div class="col-sm-3">
+            <h6 class="mb-0 mt-2">Linekdin</h6>
+          </div>
+          <div class="form-floating col-sm-9">
+            <input type="text"
+                   class="form-control"
+                   placeholder="Linkedin"
+                   formControlName="linkedinUrl" />
+          </div>
         </div>
-        <div class="form-floating mb-3">
-          <input type="text"
-                 class="form-control"
-                 placeholder="Facebook"
-                 formControlName="facebookUrl"/>
-          <label for="floatingFacebook" class="text-muted">Facebook</label>
+        <div class="row mb-3">
+          <div class="col-sm-3">
+            <h6 class="mb-0 mt-2">Facebook</h6>
+          </div>
+          <div class="form-floating col-sm-9">
+            <input type="text"
+                   class="form-control"
+                   placeholder="Facebook"
+                   formControlName="facebookUrl" />
+          </div>
         </div>
-        <div class="form-floating mb-3">
-          <input type="text"
-                 class="form-control"
-                 placeholder="Twitter"
-                 formControlName="twitterUrl"/>
-          <label for="floatingTwitter" class="text-muted">Twitter</label>
+        <div class="row mb-3">
+          <div class="col-sm-3">
+            <h6 class="mb-0 mt-2">Twitter</h6>
+          </div>
+          <div class="form-floating col-sm-9">
+            <input type="text"
+                   class="form-control"
+                   placeholder="Twitter"
+                   formControlName="twitterUrl" />
+          </div>
         </div>
-        <div class="form-floating mb-3">
-          <input type="text"
-                 class="form-control"
-                 placeholder="Website"
-                 formControlName="websiteUrl"/>
-          <label for="floatingWebsite" class="text-muted">Website</label>
+        <div class="row mb-3">
+          <div class="col-sm-3">
+            <h6 class="mb-0 mt-2">Website</h6>
+          </div>
+          <div class="form-floating col-sm-9">
+            <input type="text"
+                   class="form-control"
+                   placeholder="Website"
+                   formControlName="websiteUrl" />
+          </div>
         </div>
-        <div class="d-grid">
-          <button class="btn btn-primary btn-login fw-bold p-2 mt-3" type="submit">
-            Save
-          </button>
+        <div class="row mb-3">
+          <div class="col-sm-3">
+          </div>
+          <div class="col-sm-9">
+            <button class="btn btn-primary fw-bold p-2 mt-3" style="float: right" type="submit">
+              Save Changes
+            </button>
+          </div>
         </div>
       </form>
     </div>
   </div>
-</ng-template>
+</div>
