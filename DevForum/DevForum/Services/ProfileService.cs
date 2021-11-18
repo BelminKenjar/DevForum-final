@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DevForum.Data;
+using DevForum.Models;
 using DevForum.Services.Interfaces;
 using DevForum.ViewModels.Profile;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,20 @@ namespace DevForum.Services
         {
             _applicationDbContext = applicationDbContext;
             _mapper = mapper;
+        }
+
+        public async Task Delete(string applicationUserId)
+        {
+            var profile = _applicationDbContext.Set<Models.Profile>().FirstOrDefault(x => x.ApplicationUserId.Equals(applicationUserId));
+            var stats = _applicationDbContext.Set<ProfileStats>().FirstOrDefault(x => x.ProfileId == profile.Id);
+            var details = _applicationDbContext.Set<ProfileDetails>().FirstOrDefault(x => x.ProfileId == profile.Id);
+            var user = _applicationDbContext.Set<ApplicationUser>().FirstOrDefault(x => x.Id == applicationUserId);
+            if(details != null)
+                _applicationDbContext.Remove(details);
+            _applicationDbContext.Remove(stats);
+            _applicationDbContext.Remove(profile);
+            _applicationDbContext.Remove(user);
+            await _applicationDbContext.SaveChangesAsync();
         }
 
         public IEnumerable<ProfileViewModel> Get()

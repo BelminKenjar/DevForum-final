@@ -52,5 +52,12 @@ namespace DevForum.Controllers
             var userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             return _profileService.GetCurrentProfile(userId);
         }
+
+        [Authorize]
+        [HttpDelete("{id}")]
+        public async Task Delete(string id)
+        {
+            await _profileService.Delete(id);
+        }
     }
 }

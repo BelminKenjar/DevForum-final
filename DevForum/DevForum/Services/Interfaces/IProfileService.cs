@@ -12,5 +12,6 @@ namespace DevForum.Services.Interfaces
         ProfileViewModel GetById(int id);
         Task<ProfileViewModel> Update(int id, ProfileUpdateModel model);
         ProfileViewModel GetCurrentProfile(string userId);
+        Task Delete(string applicationUserId);
     }
 }

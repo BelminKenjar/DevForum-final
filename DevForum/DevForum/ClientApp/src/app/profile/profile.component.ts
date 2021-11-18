@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthorizeService } from '../../api-authorization/authorize.service';
 import { ProfileService } from '../../services/profile/profile.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class ProfileComponent implements OnInit {
 
   currentProfile: any;
   isEdit: boolean = false;
-  constructor(private _profileService: ProfileService, private spinner: NgxSpinnerService) { }
+  constructor(private _profileService: ProfileService, private spinner: NgxSpinnerService, private _authorizeService: AuthorizeService) { }
 
   ngOnInit() {
     this.GetCurrentProfile();
@@ -70,4 +71,14 @@ export class ProfileComponent implements OnInit {
     })
   }
 
+  DeleteAccount = () => {
+    if (confirm("Are you sure you want to delete your profile?")) {
+      const state = {
+        returnUrl: '/'
+      }
+      this._profileService.DeleteAccount(this.currentProfile.applicationUserId).subscribe(data => console.log(data));
+      this._authorizeService.signOut(state);
+      console.log("ok");
+    }
+  }
 }

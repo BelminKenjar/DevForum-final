@@ -21,4 +21,7 @@ export class ProfileService {
   InsertProfileDetails(model: any): Observable<any> {
     return this._http.post(`${environment.apiUrl}/ProfileDetails`, model);
   }
+  DeleteAccount(id: any): Observable<any> {
+    return this._http.delete(`${environment.apiUrl}/Profile/${id}`);
+  }
 }
