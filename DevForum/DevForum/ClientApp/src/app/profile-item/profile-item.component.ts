@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthorizeService } from '../../api-authorization/authorize.service';
 
 @Component({
   selector: 'app-profile-item',
@@ -13,8 +14,14 @@ export class ProfileItemComponent implements OnInit {
     size: 'lg';
   }
   closeResult: string
+  isAuthenticated: boolean = false;
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, private authorizeService: AuthorizeService) {
+    this.authorizeService.isAuthenticated().subscribe(data => {
+      if(data)
+      this.isAuthenticated = data;
+    })
+  }
 
   ngOnInit() {
 
