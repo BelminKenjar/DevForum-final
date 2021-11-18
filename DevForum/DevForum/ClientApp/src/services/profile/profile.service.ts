@@ -24,4 +24,7 @@ export class ProfileService {
   DeleteAccount(id: any): Observable<any> {
     return this._http.delete(`${environment.apiUrl}/Profile/${id}`);
   }
+  GetAllProfiles(page: any, limit: any): Observable<any> {
+    return this._http.get(`${environment.apiUrl}/Profile/${page}/${limit}`);
+  }
 }

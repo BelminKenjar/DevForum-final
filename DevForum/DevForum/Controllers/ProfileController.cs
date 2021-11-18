@@ -1,4 +1,5 @@
 ﻿using DevForum.Data;
+using DevForum.Helpers;
 using DevForum.Models;
 using DevForum.Services.Interfaces;
 using DevForum.ViewModels.Profile;
@@ -26,11 +27,20 @@ namespace DevForum.Controllers
             _httpContextAccessor = httpContextAccessor;
         }
 
-        [Authorize]
-        [HttpGet]
-        public IEnumerable<ProfileViewModel> Get()
+        [HttpGet("{pageNum}/{pageSize}")]
+        public object Get(int pageNum, int pageSize)
         {
-            return _profileService.Get();
+            var res = _profileService.Get();
+            var p = new PaginatedResponse<ProfileViewModel>(res, pageNum, pageSize);
+            var totalCount = res.Count();
+            var totalPages = Math.Ceiling((double)totalCount / pageSize);
+
+            var response = new
+            {
+                Page = p,
+                TotalPages = totalPages
+            };
+            return response;
         }
 
         [HttpGet("{id}")]
@@ -39,6 +49,7 @@ namespace DevForum.Controllers
             return _profileService.GetById(id);
         }
 
+        [Authorize]
         [HttpPost("{id}")]
         public async Task<ProfileViewModel> Update(int id, ProfileUpdateModel model)
         {

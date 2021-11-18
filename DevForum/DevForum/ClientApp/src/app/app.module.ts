@@ -20,6 +20,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { ProfileItemComponent } from './profile-item/profile-item.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ProfileItemComponent } from './profile-item/profile-item.component';
     ProfileDetailsComponent,
     ProfileStatsComponent,
     ProfilesComponent,
-    ProfileItemComponent
+    ProfileItemComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

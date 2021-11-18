@@ -1,0 +1,29 @@
+<div class="pages row" style="font-size: 1rem;">
+  <div class="col-12">
+    <span *ngIf="count > 0" class="page-counts">{{ GetCurrentResultsCount() }} of {{ count }}</span>
+  </div>
+  <div class="pagination col-12" *ngIf="count > 0">
+    <div class="mx-auto">
+      <button class="btn btn-sm btn-primary"
+              style="cursor: pointer"
+              (click)="OnPrev()"
+              [disabled]="page === 1 || loading"
+              [ngClass]="{ disabled: page === 1 || loading }">
+        Previous
+      </button>
+      <button class="btn btn-sm btn-pageNum"
+              *ngFor="let pageNum of GetPages()"
+              (click)="OnPage(pageNum)"
+              [ngClass]="{ active: pageNum === page, disabled: loading }">
+        {{ pageNum }}
+      </button>
+      <button class="btn btn-sm btn-primary"
+              style="cursor: pointer"
+              (click)="OnNext()"
+              [disabled]="IsLastPage() || loading"
+              [ngClass]="{ disabled: LastPage || loading }">
+        Next
+      </button>
+    </div>
+  </div>
+</div>

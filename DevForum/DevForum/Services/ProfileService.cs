@@ -39,7 +39,7 @@ namespace DevForum.Services
         public IEnumerable<ProfileViewModel> Get()
         {
             var res = _applicationDbContext.Set<Models.Profile>().AsQueryable();
-            res = res.Include(x => x.ApplicationUser).Include(x => x.ProfileStats);
+            res = res.Include(x => x.ApplicationUser).Include(x => x.ProfileStats).Include(x => x.ProfileDetails);
             return _mapper.Map<IEnumerable<ProfileViewModel>>(res);
         }
 

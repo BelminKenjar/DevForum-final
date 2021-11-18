@@ -1,1 +1,13 @@
-<p>profiles works!</p>
+<ngx-spinner></ngx-spinner>
+<div *ngIf="profiles">
+<h3 class="mb-5 mt-2">DevForum Users</h3>
+<app-profile-item [profiles]="profiles"></app-profile-item>
+<app-pagination class="mb-5"
+  *ngIf="profiles"
+  (goPage)="GoToPage($event)"
+  (goPrevious)="GoToPrevious()"
+  (goNext)="GoToNext()"
+  [page]="page"
+  [perPage]="limit"
+  [count]="total"></app-pagination>
+</div>
