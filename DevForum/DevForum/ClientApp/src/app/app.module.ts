@@ -18,6 +18,8 @@ import { ProfileStatsComponent } from './profile-stats/profile-stats.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProfilesComponent } from './profiles/profiles.component';
+import { ProfileItemComponent } from './profile-item/profile-item.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FetchDataComponent,
     ProfileComponent,
     ProfileDetailsComponent,
-    ProfileStatsComponent
+    ProfileStatsComponent,
+    ProfilesComponent,
+    ProfileItemComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -42,7 +46,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'profile', component: ProfileComponent, canActivate: [AuthorizeGuard] }
+      { path: 'profile', component: ProfileComponent, canActivate: [AuthorizeGuard] },
+      { path: 'users', component: ProfilesComponent }
     ])
   ],
   providers: [
