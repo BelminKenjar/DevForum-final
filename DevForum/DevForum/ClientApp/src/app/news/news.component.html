@@ -1,19 +1,30 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 <ngx-spinner></ngx-spinner>
-<div class="row d-flex mb-4 mt-3">
-  <div class="col-lg-11">
-    <h1>DevForum News</h1>
-  </div>
-  <div class="col-lg-1">
-    <div *ngIf="isAdmin" class="mt-1">
-      <button class="btn btn-lg btn-primary" (click)="open(mymodal, null, true)">Add</button>
+<div class="container mb-5">
+  <div class="row d-flex mb-4 mt-3">
+    <div class="col-lg-11">
+      <h1>DevForum News</h1>
+    </div>
+    <div class="col-lg-1">
+      <div *ngIf="isAdmin" class="mt-1">
+        <button class="btn btn-lg btn-primary" (click)="open(mymodal, null, true)">Add</button>
+      </div>
     </div>
   </div>
-</div>
-<app-news-item [newsItems]="news" [isAdmin]="isAdmin" (newsEvent)="DeleteNews($event)" (newsItem)="GetNewsItem($event, mymodal)">
-</app-news-item>
+  <app-news-item [newsItems]="news" [isAdmin]="isAdmin" (newsEvent)="DeleteNews($event)" (newsItem)="GetNewsItem($event, mymodal)">
+  </app-news-item>
 
+  <app-pagination *ngIf="news"
+                  (goPage)="GoToPage($event)"
+                  (goPrevious)="GoToPrevious()"
+                  (goNext)="GoToNext()"
+                  [page]="page"
+                  [perPage]="limit"
+                  [count]="total">
+  </app-pagination>
+
+</div>
 <ng-template #mymodal let-modal>
   <div class="modal-content">
     <div class="modal-header">

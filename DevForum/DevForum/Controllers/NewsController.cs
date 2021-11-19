@@ -1,4 +1,5 @@
 ﻿using DevForum.Data;
+using DevForum.Helpers;
 using DevForum.Models;
 using DevForum.Services.Interfaces;
 using DevForum.ViewModels.News;
@@ -27,10 +28,20 @@ namespace DevForum.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet]
-        public IEnumerable<NewsViewModel> Get()
+        [HttpGet("{pageNum}/{pageSize}")]
+        public object Get(int pageNum, int pageSize)
         {
-            return _newsService.Get();
+            var res = _newsService.Get();
+            var p = new PaginatedResponse<NewsViewModel>(res, pageNum, pageSize);
+            var totalCount = res.Count();
+            var totalPages = Math.Ceiling((double)totalCount / pageSize);
+
+            var response = new
+            {
+                Page = p,
+                TotalPages = totalPages
+            };
+            return response;
         }
 
         [AllowAnonymous]

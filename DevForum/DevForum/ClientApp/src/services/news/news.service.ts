@@ -10,8 +10,8 @@ export class NewsService {
 
   constructor(private _http: HttpClient) { }
 
-  GetNews(): Observable<any> {
-    return this._http.get(`${environment.apiUrl}/News`);
+  GetNews(pageNum: number, pageSize: number): Observable<any> {
+    return this._http.get(`${environment.apiUrl}/News/${pageNum}/${pageSize}`);
   }
   PostNews(model: any): Observable<any> {
     return this._http.post(`${environment.apiUrl}/News`, model);

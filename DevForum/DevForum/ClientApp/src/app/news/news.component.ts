@@ -21,6 +21,10 @@ export class NewsComponent implements OnInit {
     size: 'lg';
   }
 
+  page: number = 1;
+  limit = 3;
+  total: number = 0;
+
   constructor(private spinnerService: NgxSpinnerService, private newsService: NewsService, private userService: UserService,
     private modalService: NgbModal, private formBuilder: FormBuilder, private profileService: ProfileService) { }
 
@@ -38,13 +42,12 @@ export class NewsComponent implements OnInit {
   }
 
   GetNews = () => {
-    this.newsService.GetNews().subscribe(data => {
+    this.newsService.GetNews(this.page, this.limit).subscribe(data => {
       if (data) {
         this.spinnerService.show();
         setTimeout(() => {
-          console.log(data);
-          this.news = data;
-          console.log(data);
+          this.news = data['page']['data'];
+          this.total = data['page'].total
           this.spinnerService.hide();
         }, 400)
       }
@@ -127,4 +130,18 @@ export class NewsComponent implements OnInit {
       this.open(content, e, false);
     }
   }
+
+  GoToPrevious = () => {
+    this.page--;
+    this.GetNews();
+  };
+  GoToNext = () => {
+    this.page++;
+    this.GetNews();
+  };
+
+  GoToPage = (n: number) => {
+    this.page = n;
+    this.GetNews();
+  };
 }
