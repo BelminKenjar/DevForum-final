@@ -22,7 +22,7 @@ namespace DevForum.Services
         }
         public IEnumerable<NewsViewModel> Get()
         {
-            var res = _applicationDbContext.Set<News>().Include(x => x.Profile).ToList();
+            var res = _applicationDbContext.Set<News>().Include(x => x.Profile).OrderByDescending(x => x.CreatedAt).ToList();
             return _mapper.Map<IEnumerable<NewsViewModel>>(res);
         }
 
