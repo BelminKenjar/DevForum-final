@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { AuthorizeService } from '../../api-authorization/authorize.service';
 import { NewsService } from '../../services/news/news.service';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-news',
@@ -11,10 +11,15 @@ import { NewsService } from '../../services/news/news.service';
 export class NewsComponent implements OnInit {
 
   news: any;
-  constructor(private spinnerService: NgxSpinnerService, private newsService: NewsService, private authorizeService: AuthorizeService) { }
+  isAdmin: boolean = false;
+  constructor(private spinnerService: NgxSpinnerService, private newsService: NewsService, private userService: UserService) { }
 
   ngOnInit() {
     this.GetNews();
+    this.userService.IsAdmin().subscribe(data => {
+      if (data)
+        this.isAdmin = data;
+    });
   }
 
   GetNews = () => {

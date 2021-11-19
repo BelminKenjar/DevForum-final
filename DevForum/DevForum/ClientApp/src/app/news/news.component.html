@@ -1,6 +1,13 @@
 <ngx-spinner></ngx-spinner>
-<div class="row mb-4 mt-3">
-  <h1>DevForum News</h1>
+<div class="row d-flex mb-4 mt-3">
+  <div class="col-lg-11">
+    <h1>DevForum News</h1>
+  </div>
+  <div class="col-lg-1">
+    <div *ngIf="isAdmin" class="mt-1">
+      <button class="btn btn-lg btn-primary">Add</button>
+    </div>
+  </div>
 </div>
 <app-news-item [newsItems]="news">
 </app-news-item>
