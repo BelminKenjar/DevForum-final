@@ -7,6 +7,7 @@
             <h4 class="card-title">{{item.title}}</h4>
           </div>
           <div class="col-lg-1" *ngIf="isAdmin">
+            <button class="btn-sm btn" style="float: left"> <i class="fa fa-edit fa-2x" (click)="GetItem(item)"></i></button>
             <button class="btn-sm btn" style="float: right"> <i class="fa fa-times fa-2x" (click)="GetId(item.id)"></i></button>
           </div>
         </div>

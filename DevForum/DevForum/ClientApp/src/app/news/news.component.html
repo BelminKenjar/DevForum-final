@@ -7,11 +7,11 @@
   </div>
   <div class="col-lg-1">
     <div *ngIf="isAdmin" class="mt-1">
-      <button class="btn btn-lg btn-primary" (click)="open(mymodal, null)">Add</button>
+      <button class="btn btn-lg btn-primary" (click)="open(mymodal, null, true)">Add</button>
     </div>
   </div>
 </div>
-<app-news-item [newsItems]="news" [isAdmin]="isAdmin" (newsEvent)="DeleteNews($event)">
+<app-news-item [newsItems]="news" [isAdmin]="isAdmin" (newsEvent)="DeleteNews($event)" (newsItem)="GetNewsItem($event, mymodal)">
 </app-news-item>
 
 <ng-template #mymodal let-modal>
@@ -29,32 +29,7 @@
       </div>
     </div>
     <div class="modal-body">
-      <form [formGroup]="newsForm" (ngSubmit)="onSubmit()">
-        <div class="form-floating mb-3">
-          <input type="text"
-                 class="form-control"
-                 placeholder="Title"
-                 formControlName="title" />
-          <span *ngIf="f.title.dirty && f.title.errors?.required"
-                class="text-danger">
-            Title is required!
-          </span>
-          <label for="floatingTitle" class="text-muted">Title</label>
-        </div>
-        <div class="form-floating mb-3">
-          <textarea class="form-control" placeholder="Content" formControlName="content" rows="50" style="height: 400px"></textarea>
-          <span *ngIf="f.content.dirty && f.content.errors?.required"
-                class="text-danger">
-            Content is required!
-          </span>
-          <label for="floatingContent" class="text-muted">Content</label>
-        </div>
-        <div class="d-grid">
-          <button class="btn btn-primary btn-login fw-bold p-2 mt-3" type="submit">
-            Save
-          </button>
-        </div>
-      </form>
+      <app-news-form [formGroup]="newsForm" [f]="f" (submit)="submit($event)"></app-news-form>
     </div>
   </div>
 </ng-template>

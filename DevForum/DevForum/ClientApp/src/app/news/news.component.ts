@@ -52,8 +52,15 @@ export class NewsComponent implements OnInit {
   }
 
   @Input() public newsItem;
-  open(content: any, newsItem: any) {
+  open(content: any, newsItem: any, isEmpty: boolean) {
     this.newsItem = newsItem;
+    if (isEmpty) this.newsForm.reset();
+    if (newsItem && !isEmpty) {
+      this.newsForm.patchValue({
+        title: newsItem.title,
+        content: newsItem.content
+      });
+    }
     this.modalService.open(content, this.modalOptions).result.then(
       (result) => {
         console.log(result);
@@ -78,6 +85,10 @@ export class NewsComponent implements OnInit {
     return this.newsForm.controls;
   }
 
+  submit = (e: Event) => {
+    this.onSubmit();
+  };
+
   onSubmit = () => {
     this.profileService.GetUserProfile().subscribe(data => {
       if (data) {
@@ -87,8 +98,16 @@ export class NewsComponent implements OnInit {
             Content: this.newsForm.get('content').value,
             ProfileId: data.id
           }
-          this.newsService.PostNews(news);
+          console.log(this.newsItem)
+          if (this.newsItem) {
+            if (this.newsItem.id) {
+              this.newsService.UpdateNews(this.newsItem.id, news).subscribe(data => data);
+            }
+          }
+          else
+            this.newsService.PostNews(news).subscribe(data => data);
           window.location.reload();
+          console.log(news);
         }
       }
     });
@@ -100,6 +119,12 @@ export class NewsComponent implements OnInit {
         this.newsService.DeleteNews(e).subscribe(data => data);
         window.location.reload();
       }
+    }
+  }
+
+  GetNewsItem = (e: Event, content: any) => {
+    if (e) {
+      this.open(content, e, false);
     }
   }
 }

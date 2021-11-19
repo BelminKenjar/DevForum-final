@@ -48,7 +48,7 @@ namespace DevForum.Controllers
         }
 
         [Authorize]
-        [HttpPut("{id}")]
+        [HttpPost("{id}")]
         public async Task<NewsViewModel> Update(int id, NewsUpdateModel model)
         {
             return await _newsService.Update(id, model);

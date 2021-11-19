@@ -23,6 +23,7 @@ import { ProfileItemComponent } from './profile-item/profile-item.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { NewsComponent } from './news/news.component';
 import { NewsItemComponent } from './news-item/news-item.component';
+import { NewsFormComponent } from './news-form/news-form.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { NewsItemComponent } from './news-item/news-item.component';
     PaginationComponent,
     NewsComponent,
     NewsItemComponent,
+    NewsFormComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

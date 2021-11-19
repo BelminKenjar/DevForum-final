@@ -10,6 +10,7 @@ export class NewsItemComponent implements OnInit {
   @Input() newsItems: any
   @Input() isAdmin: boolean
   @Output() newsEvent = new EventEmitter<any>();
+  @Output() newsItem = new EventEmitter<any>();
 
   constructor() { }
 
@@ -20,4 +21,7 @@ export class NewsItemComponent implements OnInit {
     this.newsEvent.emit(id);
   }
 
+  GetItem = (item: any) => {
+    this.newsItem.emit(item);
+  }
 }
