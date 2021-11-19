@@ -16,4 +16,7 @@ export class NewsService {
   PostNews(model: any): Observable<any> {
     return this._http.post(`${environment.apiUrl}/News`, model);
   }
+  DeleteNews(id: any): Observable<any> {
+    return this._http.delete(`${environment.apiUrl}/News/${id}`);
+  }
 }

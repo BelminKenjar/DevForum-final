@@ -53,5 +53,12 @@ namespace DevForum.Controllers
         {
             return await _newsService.Update(id, model);
         }
+
+        [Authorize]
+        [HttpDelete("{id}")]
+        public async Task Delete(int id)
+        {
+            await _newsService.Delete(id);
+        }
     }
 }

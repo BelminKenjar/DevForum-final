@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-news-item',
@@ -8,9 +8,16 @@ import { Component, Input, OnInit } from '@angular/core';
 export class NewsItemComponent implements OnInit {
 
   @Input() newsItems: any
+  @Input() isAdmin: boolean
+  @Output() newsEvent = new EventEmitter<any>();
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  GetId = (id: any) => {
+    this.newsEvent.emit(id);
   }
 
 }

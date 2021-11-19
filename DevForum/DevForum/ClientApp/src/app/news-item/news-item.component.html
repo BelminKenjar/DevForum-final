@@ -2,13 +2,21 @@
   <div class="row" *ngFor="let item of newsItems">
     <div class="card">
       <div class="card-body">
-      <h4 class="card-title">{{item.title}}</h4>
-      <h4 class="mb-3"><i class="far fa-calendar-alt"></i> {{item.createdAt.substr(0, 10)}}</h4>
-      <p>{{item.content}}</p>
-      <div>
-        <small class="text-muted">Written by {{item.profile.firstName}} {{item.profile.lastName}}</small>
-      </div>
+        <div class="row">
+          <div class="col-lg-11">
+            <h4 class="card-title">{{item.title}}</h4>
+          </div>
+          <div class="col-lg-1" *ngIf="isAdmin">
+            <button class="btn-sm btn" style="float: right"> <i class="fa fa-times fa-2x" (click)="GetId(item.id)"></i></button>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <p>{{item.content}}</p>
+        </div>
+        <small class="text-muted"> Written by {{item.profile.firstName}} {{item.profile.lastName}} </small>
+        <small class="text-muted"> | <i class="far fa-calendar-alt"></i> Created: {{item.createdAt.substr(0, 10)}}</small>
       </div>
     </div>
   </div>
 </div>
+

@@ -93,4 +93,13 @@ export class NewsComponent implements OnInit {
       }
     });
   }
+
+  DeleteNews = (e: Event) => {
+    if (e) {
+      if (confirm("Are you sure you want to delete the news?")) {
+        this.newsService.DeleteNews(e).subscribe(data => data);
+        window.location.reload();
+      }
+    }
+  }
 }
