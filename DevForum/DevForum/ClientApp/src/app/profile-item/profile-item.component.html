@@ -80,21 +80,21 @@
         </div>
       </div>
 
-      <div class="card mb-4" *ngIf="isAuthenticated">
+      <div class="card mb-4" *ngIf="isAuthenticated && profile.profileDetails">
         <div class="card-body">
           <div class="card-title text-center"><h5>Profile details</h5></div>
           <ul *ngIf="profile.profileDetails" class="list-group list-group-flush text-center">
             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
               <h6>Age</h6>
-              <p>{{profile.profileDetails.age}}</p>
+              <p *ngIf="profile.profileDetails.age > 0">{{profile.profileDetails.age}}</p>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
               <h6>City</h6>
-              <p>{{profile.profileDetails.city}}</p>
+              <p *ngIf="profile.profileDetails.city">{{profile.profileDetails.city}}</p>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
               <h6>Country</h6>
-              <p>{{profile.profileDetails.country}}</p>
+              <p *ngIf="profile.profileDetails.country">{{profile.profileDetails.country}}</p>
             </li>
           </ul>
         </div>
