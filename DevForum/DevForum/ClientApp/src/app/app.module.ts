@@ -38,7 +38,7 @@ import { NewsItemComponent } from './news-item/news-item.component';
     ProfileItemComponent,
     PaginationComponent,
     NewsComponent,
-    NewsItemComponent
+    NewsItemComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

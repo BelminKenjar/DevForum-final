@@ -45,7 +45,13 @@ namespace DevForum
                 .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
             services.AddAuthentication()
-                .AddIdentityServerJwt();
+                    .AddIdentityServerJwt();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+            });
+
             services.AddControllersWithViews();
             services.AddControllers().AddNewtonsoftJson();
             services.AddRazorPages();

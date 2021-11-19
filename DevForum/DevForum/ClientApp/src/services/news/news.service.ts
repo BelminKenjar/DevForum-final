@@ -13,4 +13,7 @@ export class NewsService {
   GetNews(): Observable<any> {
     return this._http.get(`${environment.apiUrl}/News`);
   }
+  PostNews(model: any): Observable<any> {
+    return this._http.post(`${environment.apiUrl}/News`, model);
+  }
 }

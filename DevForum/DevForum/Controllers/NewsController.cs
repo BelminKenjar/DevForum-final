@@ -40,17 +40,14 @@ namespace DevForum.Controllers
             return _newsService.GetById(id);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         [HttpPost]
         public async Task<NewsViewModel> Insert(NewsInsertModel model)
         {
-            string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var user = _applicationDbContext.Set<ApplicationUser>().Find(id);
-            model.ProfileId = user.Profile.Id;
             return await _newsService.Insert(model);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<NewsViewModel> Update(int id, NewsUpdateModel model)
         {
