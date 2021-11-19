@@ -53,7 +53,7 @@ import { NewsItemComponent } from './news-item/news-item.component';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'profile', component: ProfileComponent, canActivate: [AuthorizeGuard] },
-      { path: 'users', component: ProfilesComponent }
+      { path: 'users', component: ProfilesComponent },
       { path: 'news', component: NewsComponent }
     ])
   ],
