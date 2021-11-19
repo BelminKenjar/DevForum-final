@@ -21,6 +21,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { ProfileItemComponent } from './profile-item/profile-item.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { NewsComponent } from './news/news.component';
+import { NewsItemComponent } from './news-item/news-item.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { PaginationComponent } from './pagination/pagination.component';
     ProfileStatsComponent,
     ProfilesComponent,
     ProfileItemComponent,
-    PaginationComponent
+    PaginationComponent,
+    NewsComponent,
+    NewsItemComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -50,6 +54,7 @@ import { PaginationComponent } from './pagination/pagination.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'profile', component: ProfileComponent, canActivate: [AuthorizeGuard] },
       { path: 'users', component: ProfilesComponent }
+      { path: 'news', component: NewsComponent }
     ])
   ],
   providers: [
