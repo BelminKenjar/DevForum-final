@@ -1,6 +1,8 @@
-<div class="container">
-  <div class="heading mb-5">
-    <h3>Topics</h3>
+<div class="container" *ngIf="topics">
+  <div class="row">
+    <div class="heading mb-3">
+      <h3>Topics</h3>
+    </div>
   </div>
-  <app-topic-item></app-topic-item>
+  <app-topic-item [topics]="topics"></app-topic-item>
 </div>
