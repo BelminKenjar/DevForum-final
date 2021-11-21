@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-topic-item',
@@ -8,9 +8,15 @@ import { Component, Input, OnInit } from '@angular/core';
 export class TopicItemComponent implements OnInit {
 
   @Input() topics: any
+  @Input() isAdmin: boolean
+  @Output() topicItem = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit() {
+  }
+
+  GetItem = (item: any) => {
+    this.topicItem.emit(item);
   }
 
 }

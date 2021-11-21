@@ -3,12 +3,13 @@
     <div class="card mb-2">
       <div class="card-body p-2 p-sm-3">
         <div class="media">
-          <img *ngIf="topic.logo" src="data:image/jpeg;base64,{{topic.logo}}" alt="" class=" mr-3 rounded-circle bg-primary" width="100">
+          <img *ngIf="topic.logo" src="data:image/jpeg;base64,{{topic.logo}}" alt="" class=" mr-3 rounded-circle bg-primary" width="100" height="100">
           <img *ngIf="!topic.logo"
                src="../../assets/topicNoImage.png"
                alt="" class="rounded-circle mr-3 bg-primary" width="100">
           <div class="media-body align-self-center">
-            <h4>{{topic.title}}</h4>
+            <h4 class="d-inline">{{topic.title}}</h4>
+            <span *ngIf="isAdmin" style="font-size: 1.3rem"><span class="text-muted"> | </span><a class="editLink" (click)="GetItem(topic)"> Edit</a></span>
             <p class="text-secondary">
               {{topic.description}}
             </p>

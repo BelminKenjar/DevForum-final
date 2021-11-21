@@ -1,0 +1,29 @@
+<form [formGroup]="formGroup" (ngSubmit)="(submit)">
+  <div class="form-floating mb-3">
+    <input type="text"
+           class="form-control"
+           placeholder="Title"
+           formControlName="title" />
+    <span *ngIf="f.title.dirty && f.title.errors?.required"
+          class="text-danger">
+      Title is required!
+    </span>
+    <label for="floatingTitle" class="text-muted">Title</label>
+  </div>
+  <div class="form-floating mb-3">
+    <textarea class="form-control" placeholder="Description" formControlName="description" rows="20" style="height: 200px"></textarea>
+    <span *ngIf="f.description.dirty && f.description.errors?.required"
+          class="text-danger">
+      Description is required!
+    </span>
+    <label for="floatingContent" class="text-muted">Description</label>
+  </div>
+  <label class="btn btn-primary">
+    Upload Image <input type="file" hidden (change)="FileInputChange($event)">
+  </label>
+  <div class="d-grid">
+    <button class="btn btn-primary btn-login fw-bold p-2 mt-3" type="submit">
+      Save
+    </button>
+  </div>
+</form>

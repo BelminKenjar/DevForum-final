@@ -41,13 +41,16 @@ namespace DevForum.Controllers
         {
             return await _topicService.Insert(model);
         }
-
-        [HttpPost("id")]
+        
+        [Authorize]
+        [HttpPost("{id}")]
         public async Task<TopicViewModel> Update(int id, TopicUpdateModel model)
         {
             return await _topicService.Update(id, model);
         }
 
+        [Authorize]
+        [HttpDelete("{id}")]
         public async Task Delete(int id)
         {
             await _topicService.Delete(id);
