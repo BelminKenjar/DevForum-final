@@ -12,7 +12,7 @@
       </div>
     </div>
   </div>
-  <app-topic-item [topics]="topics" [isAdmin]="isAdmin" (topicItem)="GetTopicItem($event, mymodal)"></app-topic-item>
+  <app-topic-item [topics]="topics" [isAdmin]="isAdmin" (topicItem)="GetTopicItem($event, mymodal)" (topicItemId)="DeleteTopic($event)"></app-topic-item>
 </div>
 
 <ng-template #mymodal let-modal>

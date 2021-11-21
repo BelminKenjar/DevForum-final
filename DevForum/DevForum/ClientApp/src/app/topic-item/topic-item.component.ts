@@ -10,6 +10,7 @@ export class TopicItemComponent implements OnInit {
   @Input() topics: any
   @Input() isAdmin: boolean
   @Output() topicItem = new EventEmitter<any>();
+  @Output() topicItemId = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit() {
@@ -17,6 +18,10 @@ export class TopicItemComponent implements OnInit {
 
   GetItem = (item: any) => {
     this.topicItem.emit(item);
+  }
+
+  DeleteTopic = (id: any) => {
+    this.topicItemId.emit(id);
   }
 
 }

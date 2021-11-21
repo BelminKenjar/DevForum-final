@@ -125,4 +125,8 @@ export class TopicComponent implements OnInit {
     if (e)
       this.open(content, e, false);
   }
+
+  DeleteTopic = (e: Event) => {
+    this.topicService.DeleteTopic(e);
+  }
 }
