@@ -24,6 +24,8 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { NewsComponent } from './news/news.component';
 import { NewsItemComponent } from './news-item/news-item.component';
 import { NewsFormComponent } from './news-form/news-form.component';
+import { TopicComponent } from './topic/topic.component';
+import { TopicItemComponent } from './topic-item/topic-item.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { NewsFormComponent } from './news-form/news-form.component';
     NewsComponent,
     NewsItemComponent,
     NewsFormComponent,
+    TopicComponent,
+    TopicItemComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -56,7 +60,8 @@ import { NewsFormComponent } from './news-form/news-form.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'profile', component: ProfileComponent, canActivate: [AuthorizeGuard] },
       { path: 'users', component: ProfilesComponent },
-      { path: 'news', component: NewsComponent }
+      { path: 'news', component: NewsComponent },
+      { path: 'topics', component: TopicComponent }
     ])
   ],
   providers: [
