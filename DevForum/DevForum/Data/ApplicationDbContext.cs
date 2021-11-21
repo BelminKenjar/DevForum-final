@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -39,6 +40,43 @@ namespace DevForum.Data
             SeedProfileDetails(builder);
             SeedProfileStats(builder);
             SeedNews(builder);
+            SeedTopics(builder);
+        }
+
+        private void SeedTopics(ModelBuilder builder)
+        {
+            builder.Entity<Topic>().HasData(
+                new Topic
+                {
+                    Id = 1,
+                    CreatedAt = DateTime.Now,
+                    ProfileId = 1,
+                    Title = "Game development",
+                    Description = "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
+                    SubTopicCount = 4,
+                    Logo = File.ReadAllBytes("Assets/gamedev.png")
+                },
+                new Topic
+                {
+                    Id = 2,
+                    CreatedAt = DateTime.Now,
+                    ProfileId = 1,
+                    Title = "Backend development",
+                    Description = "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
+                    SubTopicCount = 6,
+                    Logo = File.ReadAllBytes("Assets/backend.jpg")
+                },
+                new Topic
+                {
+                    Id = 3,
+                    CreatedAt = DateTime.Now,
+                    ProfileId = 1,
+                    Title = "Frontend development",
+                    Description = "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
+                    SubTopicCount = 0,
+                    Logo = File.ReadAllBytes("Assets/frontend.png")
+                }
+                );
         }
 
         private void SeedNews(ModelBuilder builder)
