@@ -3,6 +3,7 @@ using DevForum.ViewModels.News;
 using DevForum.ViewModels.Profile;
 using DevForum.ViewModels.ProfileDetails;
 using DevForum.ViewModels.ProfileStats;
+using DevForum.ViewModels.Topic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,11 @@ namespace DevForum.Map
 
             //profile stats
             CreateMap<ProfileStats, ProfileStatsViewModel>();
+
+            //topic
+            CreateMap<Topic, TopicViewModel>();
+            CreateMap<TopicInsertModel, Topic>();
+            CreateMap<TopicUpdateModel, Topic>();
         }
     }
 }
