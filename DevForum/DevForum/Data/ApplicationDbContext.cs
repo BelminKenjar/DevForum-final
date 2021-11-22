@@ -41,6 +41,67 @@ namespace DevForum.Data
             SeedProfileStats(builder);
             SeedNews(builder);
             SeedTopics(builder);
+            SeedSubtopics(builder);
+        }
+
+        private void SeedSubtopics(ModelBuilder builder)
+        {
+            builder.Entity<SubTopic>().HasData(
+                new SubTopic 
+                { 
+                    Id = 1, 
+                    CreatedAt = DateTime.Now, 
+                    Name = "C++", 
+                    Description = "C++ is one of the preferred languages for game development as it supports a variety of coding styles that provides low-level access to the system",
+                    ProfileId = 1,
+                    TopicId = 1
+                },
+                new SubTopic
+                {
+                    Id = 2,
+                    CreatedAt = DateTime.Now,
+                    Name = "C# Unity",
+                    Description = "Game development & design made fun",
+                    ProfileId = 1,
+                    TopicId = 1
+                },
+                new SubTopic
+                {
+                    Id = 3,
+                    CreatedAt = DateTime.Now,
+                    Name = "NodeJS",
+                    Description = "Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.",
+                    ProfileId = 1,
+                    TopicId = 2
+                },
+                new SubTopic
+                {
+                    Id = 4,
+                    CreatedAt = DateTime.Now,
+                    Name = "Java",
+                    Description = "Java — Backend Language #1",
+                    ProfileId = 1,
+                    TopicId = 2
+                },
+                new SubTopic
+                {
+                    Id = 5,
+                    CreatedAt = DateTime.Now,
+                    Name = "C#",
+                    Description = "The C# language is the preferred architecture for backend programming and automation in Windows environments.",
+                    ProfileId = 1,
+                    TopicId = 2
+                },
+                new SubTopic
+                {
+                    Id = 6,
+                    CreatedAt = DateTime.Now,
+                    Name = "HTML&CSS",
+                    Description = "HTML (the Hypertext Markup Language) and CSS (Cascading Style Sheets) are two of the core technologies for building Web pages.",
+                    ProfileId = 1,
+                    TopicId = 3
+                }
+                );
         }
 
         private void SeedTopics(ModelBuilder builder)
