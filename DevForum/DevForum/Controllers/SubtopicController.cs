@@ -24,7 +24,7 @@ namespace DevForum.Controllers
 
         [AllowAnonymous]
         [HttpGet("{id}/{pageNum}/{pageSize}")]
-        public object Get(int id, int pageNum, int pageSize, SubtopicSearchObject model)
+        public object Get(int id, int pageNum, int pageSize, [FromQuery] SubtopicSearchObject model)
         {
             var res = _subtopicService.Get(id, model);
             var p = new PaginatedResponse<SubtopicViewModel>(res, pageNum, pageSize);
