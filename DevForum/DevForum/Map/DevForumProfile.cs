@@ -3,6 +3,7 @@ using DevForum.ViewModels.News;
 using DevForum.ViewModels.Profile;
 using DevForum.ViewModels.ProfileDetails;
 using DevForum.ViewModels.ProfileStats;
+using DevForum.ViewModels.Subtopic;
 using DevForum.ViewModels.Topic;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,11 @@ namespace DevForum.Map
             CreateMap<Topic, TopicViewModel>();
             CreateMap<TopicInsertModel, Topic>();
             CreateMap<TopicUpdateModel, Topic>();
+
+            //subtopic
+            CreateMap<SubTopic, SubtopicViewModel>();
+            CreateMap<SubtopicInsertModel, SubTopic>();
+            CreateMap<SubtopicUpdateModel, SubTopic>();
         }
     }
 }
