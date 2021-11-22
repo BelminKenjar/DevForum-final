@@ -127,6 +127,9 @@ export class TopicComponent implements OnInit {
   }
 
   DeleteTopic = (e: Event) => {
-    this.topicService.DeleteTopic(e);
+    if (confirm("Are you sure you want to delete topic?")) {
+      this.topicService.DeleteTopic(e).subscribe(data => data);
+      window.location.reload();
+    }
   }
 }
