@@ -1,1 +1,4 @@
-<p>topic-details works!</p>
+<div *ngIf="topic">
+  <h2>{{topic.title}}</h2>
+  <app-subtopic [subtopics]="subtopics"></app-subtopic>
+</div>

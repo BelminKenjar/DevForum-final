@@ -29,6 +29,8 @@ import { TopicItemComponent } from './topic-item/topic-item.component';
 import { TopicFormComponent } from './topic-form/topic-form.component';
 import { SearchComponent } from './search/search.component';
 import { TopicDetailsComponent } from './topic-details/topic-details.component';
+import { SubtopicItemComponent } from './subtopic-item/subtopic-item.component';
+import { SubtopicComponent } from './subtopic/subtopic.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { TopicDetailsComponent } from './topic-details/topic-details.component';
     TopicFormComponent,
     SearchComponent,
     TopicDetailsComponent,
+    SubtopicItemComponent,
+    SubtopicComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

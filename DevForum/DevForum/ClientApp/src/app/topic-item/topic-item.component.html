@@ -9,7 +9,7 @@
                src="../../assets/topicNoImage.png"
                alt="" class="rounded-circle mr-3 bg-primary" width="100">
           <div class="media-body align-self-center">
-            <h4 class="d-inline">{{topic.title}}</h4>
+            <h4 class="d-inline"><a routerLink="/topics/{{topic.id}}">{{topic.title}}</a></h4>
             <span *ngIf="isAdmin" style="font-size: 1.3rem">
               <span class="text-muted"> | </span>
               <a class="editLink" (click)="GetItem(topic)"> Edit</a>

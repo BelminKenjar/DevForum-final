@@ -1,0 +1,33 @@
+<div *ngIf="subtopics">
+  <div class="row mt-2" *ngFor="let subtopic of subtopics">
+    <div class="col-lg-12 p-0">
+      <div class="card mb-2">
+        <div class="card-body p-2 p-sm-3">
+          <div class="media">
+            <div class="media-body align-self-center">
+              <h4 class="d-inline">
+                <!--<a routerLink="/topics/{{subtopic.id}}">{{subtopic.name}}</a>-->
+                {{subtopic.name}}
+              </h4>
+              <!--<span *ngIf="isAdmin" style="font-size: 1.3rem">
+                <span class="text-muted"> | </span>
+                <a class="editLink" (click)="GetItem(topic)"> Edit</a>
+                <span class="text-muted"> | </span>
+                <a class="editLink" (click)="DeleteTopic(topic.id)"> Delete</a>
+              </span>-->
+              <p class="text-secondary">
+                {{subtopic.description}}
+              </p>
+            </div>
+            <div style="width: 50px"></div>
+            <div class="text-muted text-center align-self-center">
+              <p class="mb-0">72</p>
+              <p>Posts</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

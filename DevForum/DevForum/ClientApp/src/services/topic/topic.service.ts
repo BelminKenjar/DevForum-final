@@ -13,6 +13,9 @@ export class TopicService {
   GetTopics(pageNum: number, pageSize: number, searchObject: any): Observable<any> {
     return this._http.get(`${environment.apiUrl}/Topic/${pageNum}/${pageSize}?Title=${searchObject.Title}`);
   }
+  GetTopicById(id: any): Observable<any> {
+    return this._http.get(`${environment.apiUrl}/Topic/${id}`);
+  }
   PostTopic(model: any): Observable<any> {
     return this._http.post(`${environment.apiUrl}/Topic`, model);
   }
