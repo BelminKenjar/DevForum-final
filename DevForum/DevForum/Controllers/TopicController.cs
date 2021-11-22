@@ -1,4 +1,5 @@
-﻿using DevForum.Services.Interfaces;
+﻿using DevForum.Helpers;
+using DevForum.Services.Interfaces;
 using DevForum.ViewModels.Topic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -9,7 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace DevForum.Controllers
-{    
+{
     [Route("api/[controller]")]
     [ApiController]
     public class TopicController : ControllerBase
@@ -22,12 +23,22 @@ namespace DevForum.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet]
-        public IEnumerable<TopicViewModel> Get([FromQuery] TopicSearchObject model = null)
+        [HttpGet("{pageNum}/{pageSize}")]
+        public object Get(int pageNum, int pageSize, [FromQuery] TopicSearchObject model = null)
         {
-            return _topicService.Get(model);
+            var res = _topicService.Get(model);
+            var p = new PaginatedResponse<TopicViewModel>(res, pageNum, pageSize);
+            var totalCount = res.Count();
+            var totalPages = Math.Ceiling((double)totalCount / pageSize);
+
+            var response = new
+            {
+                Page = p,
+                TotalPages = totalPages
+            };
+            return response;
         }
-        
+
         [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<TopicViewModel> GetById(int id)
@@ -41,7 +52,7 @@ namespace DevForum.Controllers
         {
             return await _topicService.Insert(model);
         }
-        
+
         [Authorize]
         [HttpPost("{id}")]
         public async Task<TopicViewModel> Update(int id, TopicUpdateModel model)
