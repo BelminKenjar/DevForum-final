@@ -10,8 +10,8 @@ export class TopicService {
 
   constructor(private _http: HttpClient) { }
 
-  GetTopics(pageNum: number, pageSize: number): Observable<any> {
-    return this._http.get(`${environment.apiUrl}/Topic/${pageNum}/${pageSize}`);
+  GetTopics(pageNum: number, pageSize: number, searchObject: any): Observable<any> {
+    return this._http.get(`${environment.apiUrl}/Topic/${pageNum}/${pageSize}?Title=${searchObject.Title}`);
   }
   PostTopic(model: any): Observable<any> {
     return this._http.post(`${environment.apiUrl}/Topic`, model);

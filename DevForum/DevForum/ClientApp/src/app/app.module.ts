@@ -27,6 +27,7 @@ import { NewsFormComponent } from './news-form/news-form.component';
 import { TopicComponent } from './topic/topic.component';
 import { TopicItemComponent } from './topic-item/topic-item.component';
 import { TopicFormComponent } from './topic-form/topic-form.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { TopicFormComponent } from './topic-form/topic-form.component';
     TopicComponent,
     TopicItemComponent,
     TopicFormComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

@@ -25,6 +25,9 @@ export class TopicComponent implements OnInit {
   limit = 4;
   total: number = 0;
 
+  searchObject = {
+    Title: ''
+  }
   constructor(private topicService: TopicService,
     private spinner: NgxSpinnerService,
     private userService: UserService,
@@ -41,14 +44,14 @@ export class TopicComponent implements OnInit {
   }
 
   GetTopics = () => {
-    this.topicService.GetTopics(this.page, this.limit).subscribe(data => {
+    this.topicService.GetTopics(this.page, this.limit, this.searchObject).subscribe(data => {
       if (data) {
         this.spinner.show();
         setTimeout(() => {
           this.topics = data['page']['data'];
           this.total = data['page'].total
           this.spinner.hide();
-        }, 400)
+        }, 300)
       }
     })
   }
@@ -152,4 +155,9 @@ export class TopicComponent implements OnInit {
     this.page = n;
     this.GetTopics();
   };
+
+  GetQueryValue = (e: Event) => {
+    this.searchObject.Title = e.toString();
+    this.GetTopics();
+  }
 }

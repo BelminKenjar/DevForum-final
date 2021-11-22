@@ -12,6 +12,7 @@
       </div>
     </div>
   </div>
+  <app-search (query)="GetQueryValue($event)"></app-search>
   <app-topic-item [topics]="topics" [isAdmin]="isAdmin" (topicItem)="GetTopicItem($event, mymodal)" (topicItemId)="DeleteTopic($event)"></app-topic-item>
 </div>
 
