@@ -22,6 +22,10 @@ export class TopicDetailsComponent implements OnInit {
   }
   closeResult: string
 
+  page: number = 1;
+  limit = 5;
+  total: number = 0;
+
   constructor(private route: ActivatedRoute,
     private subtopicService: SubtopicService,
     private topicService: TopicService,
@@ -43,9 +47,9 @@ export class TopicDetailsComponent implements OnInit {
 
   GetSubtopics = () => {
     let id = this.route.snapshot.params['id'];
-    this.subtopicService.GetSubtopics(id, 1, 10).subscribe(data => {
+    this.subtopicService.GetSubtopics(id, this.page, this.limit).subscribe(data => {
       this.subtopics = data['page']['data'];
-      console.log(this.subtopics);
+      this.total = data['page'].total
     });
   }
 
@@ -130,17 +134,17 @@ export class TopicDetailsComponent implements OnInit {
     }
   }
 
-  //GoToPrevious = () => {
-  //  this.page--;
-  //  this.GetNews();
-  //};
-  //GoToNext = () => {
-  //  this.page++;
-  //  this.GetNews();
-  //};
+  GoToPrevious = () => {
+    this.page--;
+    this.GetSubtopics();
+  };
+  GoToNext = () => {
+    this.page++;
+    this.GetSubtopics();
+  };
 
-  //GoToPage = (n: number) => {
-  //  this.page = n;
-  //  this.GetNews();
-  //};
+  GoToPage = (n: number) => {
+    this.page = n;
+    this.GetSubtopics();
+  };
 }

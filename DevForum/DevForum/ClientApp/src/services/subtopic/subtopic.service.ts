@@ -11,7 +11,7 @@ export class SubtopicService {
   constructor(private _http: HttpClient) { }
 
   GetSubtopics(id: any, pageNum: any, pageSize: any): Observable<any> {
-    return this._http.get(`${environment.apiUrl}/Subtopic/${id}/1/10`);
+    return this._http.get(`${environment.apiUrl}/Subtopic/${id}/${pageNum}/${pageSize}`);
   }
   PostSubtopic(model: any): Observable<any> {
     return this._http.post(`${environment.apiUrl}/Subtopic`, model);
