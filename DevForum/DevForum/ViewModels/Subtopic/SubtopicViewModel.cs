@@ -12,9 +12,9 @@ namespace DevForum.ViewModels.Subtopic
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime CreatedAt { get; set; }
-
         public int? TopicId { get; set; }
         public virtual TopicViewModel Topic { get; set; }
+        public string TopicName => Topic?.Title;
 
         //public virtual IEnumerable<Post> Posts { get; set; }
     }

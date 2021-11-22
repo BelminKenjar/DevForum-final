@@ -35,7 +35,7 @@ namespace DevForum.Services
             if (!String.IsNullOrEmpty(model?.Title))
                 query = query.Where(x => x.Name.ToLower().Contains(model.Title.ToLower()));
             query = query.Where(x => x.TopicId == topicId);
-            var res = query.ToList();
+            var res = query.Include(x => x.Topic).ToList();
             return _mapper.Map<IEnumerable<SubtopicViewModel>>(res);
         }
 
