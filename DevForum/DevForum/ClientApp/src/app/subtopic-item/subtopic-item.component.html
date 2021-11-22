@@ -9,19 +9,19 @@
                 <!--<a routerLink="/topics/{{subtopic.id}}">{{subtopic.name}}</a>-->
                 {{subtopic.name}}
               </h4>
-              <!--<span *ngIf="isAdmin" style="font-size: 1.3rem">
+              <span *ngIf="isAdmin" style="font-size: 1.3rem">
                 <span class="text-muted"> | </span>
-                <a class="editLink" (click)="GetItem(topic)"> Edit</a>
+                <a class="editLink" (click)="GetItem(subtopic)"> Edit</a>
                 <span class="text-muted"> | </span>
-                <a class="editLink" (click)="DeleteTopic(topic.id)"> Delete</a>
-              </span>-->
+                <a class="editLink" (click)="DeleteTopic(subtopic.id)"> Delete</a>
+              </span>
               <p class="text-secondary">
                 {{subtopic.description}}
               </p>
             </div>
             <div style="width: 50px"></div>
             <div class="text-muted text-center align-self-center">
-              <p class="mb-0">72</p>
+              <p class="mb-0">12</p>
               <p>Posts</p>
             </div>
           </div>

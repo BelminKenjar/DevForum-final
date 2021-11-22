@@ -1,3 +1,3 @@
 <div class="container" *ngIf="subtopics">
-  <app-subtopic-item [subtopics]="subtopics"></app-subtopic-item>
+  <app-subtopic-item [isAdmin]="isAdmin" [subtopics]="subtopics" (subtopicItem)="GetTopicItem($event)" (subtopicItemId)="DeleteTopic($event)"></app-subtopic-item>
 </div>

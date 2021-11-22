@@ -1,4 +1,35 @@
 <div *ngIf="topic">
-  <h2>{{topic.title}}</h2>
-  <app-subtopic [subtopics]="subtopics"></app-subtopic>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-11 mb-3 p-0">
+        <h1>{{topic.title}}</h1>
+      </div>
+      <div class="col-lg-1 mb-3 p-0">
+        <div *ngIf="isAdmin" class="mt-1" style="float: right">
+          <button class="btn btn-lg btn-primary" (click)="open(mymodal, null, true)">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-subtopic [subtopics]="subtopics" (subtopicItemId)="DeleteSubtopic($event)" (subtopicItem)="GetSubtopicItem($event, mymodal)"></app-subtopic>
 </div>
+
+<ng-template #mymodal let-modal>
+  <div class="modal-content">
+    <div class="modal-header">
+      <div style="float: left"><h4>Add Subtopic</h4></div>
+      <div style="float: right">
+        <button type="button"
+                class="close btn"
+                data-dismiss="modal"
+                aria-label="Close"
+                (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true"><i class="fa fa-times"></i></span>
+        </button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <app-subtopic-form [formGroup]="subtopicForm" [f]="f" (submit)="submit($event)"></app-subtopic-form>
+    </div>
+  </div>
+</ng-template>

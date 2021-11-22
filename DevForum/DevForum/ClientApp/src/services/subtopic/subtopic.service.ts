@@ -13,4 +13,13 @@ export class SubtopicService {
   GetSubtopics(id: any, pageNum: any, pageSize: any): Observable<any> {
     return this._http.get(`${environment.apiUrl}/Subtopic/${id}/1/10`);
   }
+  PostSubtopic(model: any): Observable<any> {
+    return this._http.post(`${environment.apiUrl}/Subtopic`, model);
+  }
+  UpdateSubtopic(id: any, model: any): Observable<any> {
+    return this._http.post(`${environment.apiUrl}/Subtopic/${id}`, model);
+  }
+  DeleteSubtopic(id: any): Observable<any> {
+    return this._http.delete(`${environment.apiUrl}/Subtopic/${id}`);
+  }
 }
