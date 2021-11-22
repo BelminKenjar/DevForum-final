@@ -28,6 +28,7 @@ import { TopicComponent } from './topic/topic.component';
 import { TopicItemComponent } from './topic-item/topic-item.component';
 import { TopicFormComponent } from './topic-form/topic-form.component';
 import { SearchComponent } from './search/search.component';
+import { TopicDetailsComponent } from './topic-details/topic-details.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { SearchComponent } from './search/search.component';
     TopicItemComponent,
     TopicFormComponent,
     SearchComponent,
+    TopicDetailsComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -65,7 +67,8 @@ import { SearchComponent } from './search/search.component';
       { path: 'profile', component: ProfileComponent, canActivate: [AuthorizeGuard] },
       { path: 'users', component: ProfilesComponent },
       { path: 'news', component: NewsComponent },
-      { path: 'topics', component: TopicComponent }
+      { path: 'topics', component: TopicComponent },
+      { path: 'topics/:id', component: TopicDetailsComponent }
     ])
   ],
   providers: [
