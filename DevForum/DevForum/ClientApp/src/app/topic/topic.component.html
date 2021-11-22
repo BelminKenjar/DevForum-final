@@ -15,6 +15,15 @@
   <app-topic-item [topics]="topics" [isAdmin]="isAdmin" (topicItem)="GetTopicItem($event, mymodal)" (topicItemId)="DeleteTopic($event)"></app-topic-item>
 </div>
 
+<app-pagination *ngIf="topics"
+                (goPage)="GoToPage($event)"
+                (goPrevious)="GoToPrevious()"
+                (goNext)="GoToNext()"
+                [page]="page"
+                [perPage]="limit"
+                [count]="total">
+</app-pagination>
+
 <ng-template #mymodal let-modal>
   <div class="modal-content">
     <div class="modal-header">

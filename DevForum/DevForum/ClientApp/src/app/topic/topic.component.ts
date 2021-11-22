@@ -20,6 +20,11 @@ export class TopicComponent implements OnInit {
   modalOptions = {
     size: 'md'
   }
+
+  page: number = 1;
+  limit = 4;
+  total: number = 0;
+
   constructor(private topicService: TopicService,
     private spinner: NgxSpinnerService,
     private userService: UserService,
@@ -36,11 +41,12 @@ export class TopicComponent implements OnInit {
   }
 
   GetTopics = () => {
-    this.topicService.GetTopics().subscribe(data => {
+    this.topicService.GetTopics(this.page, this.limit).subscribe(data => {
       if (data) {
         this.spinner.show();
         setTimeout(() => {
-          this.topics = data
+          this.topics = data['page']['data'];
+          this.total = data['page'].total
           this.spinner.hide();
         }, 400)
       }
@@ -132,4 +138,18 @@ export class TopicComponent implements OnInit {
       window.location.reload();
     }
   }
+
+  GoToPrevious = () => {
+    this.page--;
+    this.GetTopics();
+  };
+  GoToNext = () => {
+    this.page++;
+    this.GetTopics();
+  };
+
+  GoToPage = (n: number) => {
+    this.page = n;
+    this.GetTopics();
+  };
 }
