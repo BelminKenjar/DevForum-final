@@ -10,6 +10,9 @@
         </div>
       </div>
     </div>
+    <div class="row">
+    </div>
+      <app-search (query)="GetQueryValue($event)"></app-search>
   </div>
   <app-subtopic [subtopics]="subtopics" (subtopicItemId)="DeleteSubtopic($event)" (subtopicItem)="GetSubtopicItem($event, mymodal)"></app-subtopic>
 </div>

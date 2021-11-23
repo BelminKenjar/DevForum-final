@@ -26,6 +26,9 @@ export class TopicDetailsComponent implements OnInit {
   limit = 5;
   total: number = 0;
 
+  searchObject = {
+    Name: ''
+  }
   constructor(private route: ActivatedRoute,
     private subtopicService: SubtopicService,
     private topicService: TopicService,
@@ -47,7 +50,7 @@ export class TopicDetailsComponent implements OnInit {
 
   GetSubtopics = () => {
     let id = this.route.snapshot.params['id'];
-    this.subtopicService.GetSubtopics(id, this.page, this.limit).subscribe(data => {
+    this.subtopicService.GetSubtopics(id, this.page, this.limit, this.searchObject).subscribe(data => {
       this.subtopics = data['page']['data'];
       this.total = data['page'].total
     });
@@ -147,4 +150,9 @@ export class TopicDetailsComponent implements OnInit {
     this.page = n;
     this.GetSubtopics();
   };
+
+  GetQueryValue = (e: Event) => {
+    this.searchObject.Name = e.toString();
+    this.GetSubtopics();
+  }
 }
