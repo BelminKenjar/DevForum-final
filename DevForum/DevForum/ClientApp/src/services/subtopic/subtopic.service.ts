@@ -22,4 +22,7 @@ export class SubtopicService {
   DeleteSubtopic(id: any): Observable<any> {
     return this._http.delete(`${environment.apiUrl}/Subtopic/${id}`);
   }
+  GetSubtopicById(id: any): Observable<any> {
+    return this._http.get(`${environment.apiUrl}/Subtopic/${id}`);
+  }
 }

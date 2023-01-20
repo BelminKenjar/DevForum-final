@@ -1,8 +1,10 @@
 ﻿using DevForum.Models;
 using DevForum.ViewModels.News;
+using DevForum.ViewModels.Posts;
 using DevForum.ViewModels.Profile;
 using DevForum.ViewModels.ProfileDetails;
 using DevForum.ViewModels.ProfileStats;
+using DevForum.ViewModels.Reply;
 using DevForum.ViewModels.Subtopic;
 using DevForum.ViewModels.Topic;
 using System;
@@ -43,6 +45,16 @@ namespace DevForum.Map
             CreateMap<SubTopic, SubtopicViewModel>();
             CreateMap<SubtopicInsertModel, SubTopic>();
             CreateMap<SubtopicUpdateModel, SubTopic>();
+
+            //post
+            CreateMap<Post, PostViewModel>();
+            CreateMap<PostInsertModel, Post>();
+            CreateMap<PostUpdateModel, Post>();
+
+            //postreply
+            CreateMap<PostReply, PostReplyViewModel>();
+            CreateMap<PostReplyInsertModel, PostReply>();
+            CreateMap<PostReplyUpdateModel, PostReply>();
         }
     }
 }

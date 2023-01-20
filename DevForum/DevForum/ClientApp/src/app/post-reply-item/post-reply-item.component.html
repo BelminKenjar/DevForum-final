@@ -1,0 +1,43 @@
+<div *ngIf="postReplies">
+  <div class="row mt-2" *ngFor="let postReply of postReplies">
+    <div class="col-lg-12 p-0">
+      <div class="card mb-2">
+        <div class="card-body p-2 p-sm-3">
+          <div class="media">
+            <div class="media-body align-self-center">
+              <p>Profile: {{postReply.profile.firstName}} {{postReply.profile.lastName}}</p>
+              <img *ngIf="postReply.profile.image" src="data:image/jpeg;base64,{{postReply.profile.image}}" alt="" class="rounded-circle p-1 bg-primary" width="180" height="180">
+              <img *ngIf="!postReply.profile.image"
+                   src="../../assets/defaultUserImage.png"
+                   alt="" class="rounded-circle p-1 bg-primary" width="180" height="180">
+              <p>
+                <!--                <a routerLink="/topics/{{subtopic.id}}">{{subtopic.name}}</a>-->
+                {{postReply.content}}
+                <!--<a routerLink="/topics/subtopics/{{subtopic.id}}">{{subtopic.name}}</a>-->
+              </p>
+              <span *ngIf="isAdmin" style="font-size: 1.3rem">
+                <span class="text-muted"> | </span>
+                <a class="editLink" (click)="GetItem(postReply)"> Edit</a>
+                <span class="text-muted"> | </span>
+                <a class="editLink" (click)="DeleteTopic(postReply.id)"> Delete</a>
+              </span>
+              <br>
+              <br>
+              <span>
+              <p class="d-inline" >Created at: {{postReply.createdAt | date:"medium"}}</p><br>
+              <p class="d-inline">Edited at: {{postReply.editedAt | date: "medium"}}</p>
+            </span>
+            </div>
+
+<!--            <div style="width: 20px"></div>-->
+<!--            <div class="text-muted text-center align-self-center">-->
+<!--              <p class="mb-0">{{postReply.likeCount}}</p>-->
+<!--              <p>Likes</p>-->
+<!--            </div>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

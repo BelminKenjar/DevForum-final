@@ -1,0 +1,47 @@
+<div *ngIf="post">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-11 mb-3 p-0">
+        <h1>{{post.title}}</h1>
+      </div>
+      <div class="col-lg-1 mb-3 p-0">
+        <div *ngIf="isAdmin" class="mt-1" style="float: right">
+          <button class="btn btn-lg btn-primary" (click)="open(mymodal, null, true)">Add</button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+    </div>
+    <app-search (query)="GetQueryValue($event)"></app-search>
+  </div>
+  <app-post-reply [postReplies]="postReplies" (postReplyItemId)="DeletePostReply($event)" (postReplyItem)="GetPostReplyItem($event, mymodal)"></app-post-reply>
+</div>
+
+<app-pagination *ngIf="postReplies"
+                (goPage)="GoToPage($event)"
+                (goPrevious)="GoToPrevious()"
+                (goNext)="GoToNext()"
+                [page]="page"
+                [perPage]="limit"
+                [count]="total">
+</app-pagination>
+
+<ng-template #mymodal let-modal>
+  <div class="modal-content">
+    <div class="modal-header">
+      <div style="float: left"><h4>Add Reply</h4></div>
+      <div style="float: right">
+        <button type="button"
+                class="close btn"
+                data-dismiss="modal"
+                aria-label="Close"
+                (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true"><i class="fa fa-times"></i></span>
+        </button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <app-post-reply-form [formGroup]="postReplyForm" [f]="f" (submit)="submit($event)"></app-post-reply-form>
+    </div>
+  </div>
+</ng-template>

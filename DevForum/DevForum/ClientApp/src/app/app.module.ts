@@ -32,6 +32,14 @@ import { TopicDetailsComponent } from './topic-details/topic-details.component';
 import { SubtopicItemComponent } from './subtopic-item/subtopic-item.component';
 import { SubtopicComponent } from './subtopic/subtopic.component';
 import { SubtopicFormComponent } from './subtopic-form/subtopic-form.component';
+import { PostComponent } from './post/post.component';
+import { PostFormComponent } from './post-form/post-form.component';
+import { PostItemComponent } from './post-item/post-item.component';
+import { SubtopicDetailsComponent } from './subtopic-details/subtopic-details.component';
+import { PostDetailsComponent } from './post-details/post-details.component';
+import { PostReplyComponent } from './post-reply/post-reply.component';
+import { PostReplyItemComponent } from './post-reply-item/post-reply-item.component';
+import { PostReplyFormComponent } from './post-reply-form/post-reply-form.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +65,14 @@ import { SubtopicFormComponent } from './subtopic-form/subtopic-form.component';
     SubtopicItemComponent,
     SubtopicComponent,
     SubtopicFormComponent,
+    PostComponent,
+    PostFormComponent,
+    PostItemComponent,
+    SubtopicDetailsComponent,
+    PostDetailsComponent,
+    PostReplyComponent,
+    PostReplyItemComponent,
+    PostReplyFormComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -74,7 +90,11 @@ import { SubtopicFormComponent } from './subtopic-form/subtopic-form.component';
       { path: 'users', component: ProfilesComponent },
       { path: 'news', component: NewsComponent },
       { path: 'topics', component: TopicComponent },
-      { path: 'topics/:id', component: TopicDetailsComponent }
+      { path: 'topics/:id', component: TopicDetailsComponent },
+      { path: 'subtopics', component: SubtopicComponent },
+      { path: 'subtopics/:id', component: SubtopicDetailsComponent },
+      { path: 'post', component: PostComponent },
+      { path: 'post/:id', component: PostDetailsComponent }
     ])
   ],
   providers: [

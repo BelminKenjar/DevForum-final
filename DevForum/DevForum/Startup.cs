@@ -68,6 +68,8 @@ namespace DevForum
             services.AddScoped<IProfileDetailsService, ProfileDetailsService>();
             services.AddScoped<ITopicService, TopicService>();
             services.AddScoped<ISubtopicService, SubtopicService>();
+            services.AddScoped<IPostService, PostService>();
+            services.AddScoped<IPostReplyService, PostReplyService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

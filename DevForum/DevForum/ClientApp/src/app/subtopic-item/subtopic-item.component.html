@@ -6,8 +6,9 @@
           <div class="media">
             <div class="media-body align-self-center">
               <h4 class="d-inline">
-                <!--<a routerLink="/topics/{{subtopic.id}}">{{subtopic.name}}</a>-->
-                {{subtopic.name}}
+                <a routerLink="/subtopics/{{subtopic.id}}">{{subtopic.name}}</a>
+<!--{{subtopic.name}}-->
+                <!--<a routerLink="/subtopics/{{subtopic.id}}">{{subtopic.name}}</a>-->
               </h4>
               <span *ngIf="isAdmin" style="font-size: 1.3rem">
                 <span class="text-muted"> | </span>

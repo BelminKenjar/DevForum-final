@@ -1,4 +1,5 @@
-﻿using DevForum.ViewModels.Topic;
+﻿using DevForum.Models;
+using DevForum.ViewModels.Topic;
 using System;
 using System.Collections.Generic;
 using System.Linq;

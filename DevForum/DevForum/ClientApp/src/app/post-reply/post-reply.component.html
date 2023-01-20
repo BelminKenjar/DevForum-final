@@ -1,0 +1,3 @@
+<div class="container" *ngIf="postReplies">
+  <app-post-reply-item [isAdmin]="isAdmin" [postReplies]="postReplies" (postReplyItem)="GetPostItem($event)" (postReplyItemId)="DeletePost($event)"></app-post-reply-item>
+</div>

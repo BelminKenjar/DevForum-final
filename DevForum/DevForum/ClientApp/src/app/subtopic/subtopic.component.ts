@@ -8,7 +8,7 @@ import { UserService } from '../../services/user/user.service';
 })
 export class SubtopicComponent implements OnInit {
 
-  @Input() subtopics: any
+  @Input() subtopics: any;
   isAdmin: boolean;
   @Output() subtopicItem = new EventEmitter<any>();
   @Output() subtopicItemId = new EventEmitter<any>();

@@ -1,0 +1,3 @@
+<div class="container" *ngIf="posts">
+  <app-post-item [isAdmin]="isAdmin" [posts]="posts" (postItem)="GetSubTopicItem($event)" (postItemId)="DeleteSubTopic($event)"></app-post-item>
+</div>
