@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 
 namespace DevForum
@@ -29,6 +31,13 @@ namespace DevForum
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddControllers()
+            //    .AddNewtonsoftJson(options =>
+            //    {
+            //        // Use the default property (Pascal) casing
+            //        options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            //        options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            //    });
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -70,6 +79,7 @@ namespace DevForum
             services.AddScoped<ISubtopicService, SubtopicService>();
             services.AddScoped<IPostService, PostService>();
             services.AddScoped<IPostReplyService, PostReplyService>();
+            services.AddScoped<IPostLikeService, PostLikeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

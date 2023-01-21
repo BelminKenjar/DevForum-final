@@ -30,7 +30,6 @@ namespace DevForum.Services
         }
         public async Task<PostViewModel> Update(int id, PostUpdateModel model)
         {
-            
             var entity = _applicationDbContext.Set<Post>().Find(id);
             _mapper.Map(model, entity);
             entity.EditedAt = DateTime.Now;
@@ -49,9 +48,7 @@ namespace DevForum.Services
             if (!String.IsNullOrEmpty(model?.Title))
                 query = query.Where(x => x.Title.ToLower().Contains(model.Title.ToLower()));
             query = query.Where(x => x.SubTopicId == SubTopicId);
-            query.Where(x => x.SubTopicId == SubTopicId).Select(x => x.EditedAt.ToShortDateString());
-            var res = query.Include(x => x.SubTopic).ToList();
-            
+            var res = query.Include(x => x.SubTopic).ThenInclude(z => z.Profile).ToList();
             return _mapper.Map<IEnumerable<PostViewModel>>(res);
         }
         public async Task<PostViewModel> GetById(int id)

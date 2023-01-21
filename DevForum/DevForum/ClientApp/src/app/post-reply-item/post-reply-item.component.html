@@ -4,29 +4,33 @@
       <div class="card mb-2">
         <div class="card-body p-2 p-sm-3">
           <div class="media">
-            <div class="media-body align-self-center">
+
+            <div class="text-center align-self-center">
               <p>Profile: {{postReply.profile.firstName}} {{postReply.profile.lastName}}</p>
               <img *ngIf="postReply.profile.image" src="data:image/jpeg;base64,{{postReply.profile.image}}" alt="" class="rounded-circle p-1 bg-primary" width="180" height="180">
               <img *ngIf="!postReply.profile.image"
                    src="../../assets/defaultUserImage.png"
                    alt="" class="rounded-circle p-1 bg-primary" width="180" height="180">
+              <br>
+              <small>
+                <i class="far fa-calendar-alt"></i><p class="d-inline" > Created at: {{postReply.createdAt | date:"medium"}}</p><br>
+                <i class="far fa-calendar-alt"></i><p class="d-inline"> Edited at: {{postReply.editedAt | date: "medium"}}</p>
+            </small>
+            </div>
+            <div style="width: 50px"></div>
+            <div class="media-body">
+              <span *ngIf="isAdmin" style="font-size: 1.3rem">
+                <span class="text-muted"> | </span>
+                <a class="editLink" (click)="GetItem(postReply)"> Edit</a>
+                <span class="text-muted"> | </span>
+                <a class="editLink" (click)="DeletePostReply(postReply.id)"> Delete</a>
+              </span>
               <p>
                 <!--                <a routerLink="/topics/{{subtopic.id}}">{{subtopic.name}}</a>-->
                 {{postReply.content}}
                 <!--<a routerLink="/topics/subtopics/{{subtopic.id}}">{{subtopic.name}}</a>-->
               </p>
-              <span *ngIf="isAdmin" style="font-size: 1.3rem">
-                <span class="text-muted"> | </span>
-                <a class="editLink" (click)="GetItem(postReply)"> Edit</a>
-                <span class="text-muted"> | </span>
-                <a class="editLink" (click)="DeleteTopic(postReply.id)"> Delete</a>
-              </span>
-              <br>
-              <br>
-              <span>
-              <p class="d-inline" >Created at: {{postReply.createdAt | date:"medium"}}</p><br>
-              <p class="d-inline">Edited at: {{postReply.editedAt | date: "medium"}}</p>
-            </span>
+
             </div>
 
 <!--            <div style="width: 20px"></div>-->

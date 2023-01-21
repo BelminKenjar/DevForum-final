@@ -24,9 +24,19 @@ namespace DevForum.Services
         }
         public async Task<PostReplyViewModel> Insert(PostReplyInsertModel model)
         {
+           
             var entity = _mapper.Map<PostReply>(model);
+            var posts = _applicationDbContext.Set<Post>();
+            //foreach (var p in posts)
+            //{
+            //    if (p.Id == entity.PostId)
+            //    {
+            //        p.ReplyCount++;
+            //    }
+            //}
             await _applicationDbContext.AddAsync(entity);
             await _applicationDbContext.SaveChangesAsync();
+            
             return _mapper.Map<PostReplyViewModel>(entity);
         }
         public async Task<PostReplyViewModel> Update(int id, PostReplyUpdateModel model)
@@ -54,6 +64,7 @@ namespace DevForum.Services
         }
         public IEnumerable<PostReplyViewModel> Get(int PostId, PostReplySearchObject model = null)
         {
+            var reply = _applicationDbContext.Set<Post>().Find(PostId);
             var query = _applicationDbContext.Set<PostReply>().AsQueryable();
             if (!String.IsNullOrEmpty(model?.Content))
                 query = query.Where(x => x.Content.ToLower().Contains(model.Content.ToLower()));
@@ -61,7 +72,9 @@ namespace DevForum.Services
             query.Where(x => x.PostId == PostId).Select(x => x.Profile.FirstName);
 
             var res = query.Include(x => x.Profile).ThenInclude(z => z.Posts).ToList();
+            reply.ReplyCount = res.Count();
 
+            _applicationDbContext.SaveChanges();
             return _mapper.Map<IEnumerable<PostReplyViewModel>>(res);
         }
     }

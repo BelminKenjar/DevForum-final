@@ -21,7 +21,7 @@ export class PostReplyItemComponent implements OnInit {
   GetItem = (item: any) => {
     this.postReplyItem.emit(item);
   }
-  DeleteTopic = (id: any) => {
+  DeletePostReply = (id: any) => {
     this.postReplyItemId.emit(id);
   }
 }

@@ -7,6 +7,7 @@ namespace DevForum.ViewModels.Posts
 {
     public class PostSearchObject
     {
+        public int Id { get; set; }
         public string Title { get; set; }
     }
 }

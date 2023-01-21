@@ -4,7 +4,20 @@
       <div class="card mb-2">
         <div class="card-body p-2 p-sm-3">
           <div class="media">
-            <div class="media-body align-self-center">
+            <div class="text-center align-self-center">
+              <p>Profile: {{post.profile.firstName}} {{post.profile.lastName}}</p>
+              <img *ngIf="post.profile.image" src="data:image/jpeg;base64,{{post.profile.image}}" alt="" class="rounded-circle p-1 bg-primary" width="180" height="180">
+              <img *ngIf="!post.profile.image"
+                   src="../../assets/defaultUserImage.png"
+                   alt="" class="rounded-circle p-1 bg-primary" width="180" height="180">
+              <br>
+              <small>
+                <i class="far fa-calendar-alt"></i><p class="d-inline" > Created at: {{post.createdAt | date:"medium"}}</p><br>
+                <i class="far fa-calendar-alt"></i><p class="d-inline"> Edited at: {{post.editedAt | date: "medium"}}</p>
+            </small>
+            </div>
+            <div style="width: 50px"></div>
+            <div class="media-body">
               <h4 class="d-inline">
 <!--                <a routerLink="/topics/{{subtopic.id}}">{{subtopic.name}}</a>-->
                 {{post.title}}
@@ -21,12 +34,12 @@
               <p class="text-secondary">
                 {{post.content}}
               </p>
-              <p class="date">Created at: {{post.createdAt | date: "medium"}}
-              </p>
+<!--              <p class="date">Created at: {{post.createdAt | date: "medium"}}-->
+<!--              </p>-->
 
-              <p class="date">
-                Edited at: {{post.editedAt | date: "medium"}}
-              </p>
+<!--              <p class="date">-->
+<!--                Edited at: {{post.editedAt | date: "medium"}}-->
+<!--              </p>-->
             </div>
             <div style="width: 50px"></div>
             <div class="text-muted text-center align-self-center">

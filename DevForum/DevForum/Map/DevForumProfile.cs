@@ -1,5 +1,6 @@
 ﻿using DevForum.Models;
 using DevForum.ViewModels.News;
+using DevForum.ViewModels.PostLike;
 using DevForum.ViewModels.Posts;
 using DevForum.ViewModels.Profile;
 using DevForum.ViewModels.ProfileDetails;
@@ -55,6 +56,11 @@ namespace DevForum.Map
             CreateMap<PostReply, PostReplyViewModel>();
             CreateMap<PostReplyInsertModel, PostReply>();
             CreateMap<PostReplyUpdateModel, PostReply>();
+
+            //postlike
+            CreateMap<PostLike, PostLikeViewModel>();
+            CreateMap<PostLikeInsertModel, PostLike>();
+            CreateMap<PostLikeUpdateModel, PostLike>();
         }
     }
 }
