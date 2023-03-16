@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserService } from '../../services/user/user.service';
+import {PostService} from '../../services/post/post.service';
 
 @Component({
   selector: 'app-post',
@@ -13,7 +14,7 @@ export class PostComponent implements OnInit {
   @Output() postItem = new EventEmitter<any>();
   @Output() postItemId = new EventEmitter<any>();
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private postService: PostService) { }
 
   ngOnInit() {
     this.userService.IsAdmin().subscribe(data => {

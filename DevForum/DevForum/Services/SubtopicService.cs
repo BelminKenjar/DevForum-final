@@ -45,6 +45,35 @@ namespace DevForum.Services
                                .Include(x => x.Topic)
                                .Include(x => x.Posts)
                                .FirstOrDefaultAsync(x => x.Id == id);
+            var posts = _applicationDbContext.Posts.Where(x => x.SubTopicId == id).ToList();
+            var likes = _applicationDbContext.PostLikes.ToList();
+            var replies = _applicationDbContext.PostReplies.ToList();
+            var brojacLike = 0;
+            var brojacreply = 0;
+            foreach (var post in posts)
+            {
+                foreach (var like in likes)
+                {
+                    if (like.PostId == post.Id)
+                    {
+                        brojacLike++;
+                    }
+                }
+                foreach (var reply in replies)
+                {
+                    if (reply.PostId == post.Id)
+                    {
+                        brojacreply++;
+                    }
+                }
+                post.LikeCount = brojacLike;
+                post.ReplyCount = brojacreply;
+                brojacLike = 0;
+                brojacreply = 0;
+                _applicationDbContext.Posts.Update(post);
+                _applicationDbContext.SaveChanges();
+                
+            }
             return _mapper.Map<SubtopicViewModel>(entity);
         }
 

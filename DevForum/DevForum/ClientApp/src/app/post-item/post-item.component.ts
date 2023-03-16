@@ -1,4 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {PostLikeService} from '../../services/postLike/post-like.service';
+import {ProfileService} from '../../services/profile/profile.service';
+import {PostService} from '../../services/post/post.service';
+import {error} from 'protractor';
+
+
 
 @Component({
   selector: 'app-post-item',
@@ -11,9 +17,13 @@ export class PostItemComponent implements OnInit {
   @Input() isAdmin: boolean;
   @Output() postItem = new EventEmitter<any>();
   @Output() postItemId = new EventEmitter<any>();
-  constructor() { }
+  profile: any;
+  constructor(private postLikeService: PostLikeService,
+              private profileService: ProfileService,
+              ) { }
 
   ngOnInit() {
+    this.profileService.GetUserProfile().subscribe((x: any) => { this.profile = x; });
   }
 
   GetItem = (item: any) => {
@@ -22,5 +32,12 @@ export class PostItemComponent implements OnInit {
   DeleteTopic = (id: any) => {
     this.postItemId.emit(id);
   }
-
+  PostLike(postid: number) {
+    let model;
+    let profileId;
+    profileId = this.profile.id;
+    model = {postid, profileId};
+    this.postLikeService.PostPostLike(model).subscribe(data => data);
+    return location.reload();
+  }
 }

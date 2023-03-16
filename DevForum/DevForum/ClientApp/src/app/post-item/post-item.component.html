@@ -43,14 +43,14 @@
             </div>
             <div style="width: 50px"></div>
             <div class="text-muted text-center align-self-center">
-              <p class="mb-0">{{post.replyCount}}</p>
+              <p class="mb-0" >{{post.replyCount}}</p>
               <a routerLink="/post/{{post.id}}">Replies</a>
 <!--              <p>Replies</p>-->
             </div>
             <div style="width: 20px"></div>
             <div class="text-muted text-center align-self-center">
               <p class="mb-0">{{post.likeCount}}</p>
-              <a href=""><i class="fa fa-thumbs-up"></i></a>
+              <a><i class="fa fa-thumbs-up" (click)="PostLike(post.id)"></i></a>
             </div>
           </div>
         </div>

@@ -11,6 +11,5 @@ namespace DevForum.Services.Interfaces
         //IEnumerable<PostLikeViewModel> Get(int PostId);
         //Task<PostLikeViewModel> GetById(int id);
         Task<PostLikeViewModel> Insert(PostLikeInsertModel model);
-        Task Delete(int id);
     }
 }

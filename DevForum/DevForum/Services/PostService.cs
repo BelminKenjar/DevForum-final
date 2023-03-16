@@ -48,7 +48,7 @@ namespace DevForum.Services
             if (!String.IsNullOrEmpty(model?.Title))
                 query = query.Where(x => x.Title.ToLower().Contains(model.Title.ToLower()));
             query = query.Where(x => x.SubTopicId == SubTopicId);
-            var res = query.Include(x => x.SubTopic).ThenInclude(z => z.Profile).ToList();
+            var res = query.Include(x=>x.Profile).ToList();
             return _mapper.Map<IEnumerable<PostViewModel>>(res);
         }
         public async Task<PostViewModel> GetById(int id)

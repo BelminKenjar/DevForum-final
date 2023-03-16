@@ -26,11 +26,5 @@ namespace DevForum.Controllers
         {
             return await _postLikeService.Insert(model);
         }
-        [Authorize]
-        [HttpDelete("{id}")]
-        public async Task Delete(int id)
-        {
-            await _postLikeService.Delete(id);
-        }
     }
 }

@@ -7,7 +7,10 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web.Http;
 
 namespace DevForum.Services
 {
@@ -24,16 +27,40 @@ namespace DevForum.Services
         public async Task<PostLikeViewModel> Insert(PostLikeInsertModel model)
         {
             var entity = _mapper.Map<PostLike>(model);
-            await _applicationDbContext.AddAsync(entity);
+            var postLikes = _applicationDbContext.Set<PostLike>().ToList();
+            var posts = _applicationDbContext.Set<Post>().ToList();
+
+            for (int i = 0; i < posts.Count; i++)
+            {
+                if (posts[i].Id == entity.PostId)
+                {
+                    if (!postLikes.Any(x=>x.ProfileId == model.ProfileId && x.PostId == model.PostId))
+                    {
+                        var x = new PostLike
+                        {
+                            CreatedAt = DateTime.Now,
+                            PostId = posts[i].Id,
+                            ProfileId = entity.ProfileId
+                        };
+                        posts[i].LikeCount += 1;
+                        await _applicationDbContext.PostLikes.AddAsync(x);
+                        await _applicationDbContext.SaveChangesAsync();
+                        return _mapper.Map<PostLikeViewModel>(entity);
+                    }
+                    else
+                    {
+                        var z = postLikes.Find(x => x.PostId == model.PostId && x.ProfileId == model.ProfileId);
+                        posts[i].LikeCount -= 1;
+                        _applicationDbContext.PostLikes.Remove(z);
+                        await _applicationDbContext.SaveChangesAsync();
+                        return _mapper.Map<PostLikeViewModel>(entity);
+                    }
+                }
+            }
             await _applicationDbContext.SaveChangesAsync();
             return _mapper.Map<PostLikeViewModel>(entity);
         }
-        public async Task Delete(int id)
-        {
-            var entity = _applicationDbContext.Set<PostLike>().Find(id);
-            _applicationDbContext.Remove(entity);
-            await _applicationDbContext.SaveChangesAsync();
-        }
+        
         //public async Task<PostLikeViewModel> GetById(int id)
         //{
         //    var entity = await _applicationDbContext.Set<PostLike>()
@@ -44,12 +71,10 @@ namespace DevForum.Services
         //}
         //public IEnumerable<PostLikeViewModel> Get(int PostId)
         //{
+        //    var likes = _applicationDbContext.Set<Post>().Find(PostId);
         //    var query = _applicationDbContext.Set<PostLike>().AsQueryable();
-        //    if (!String.IsNullOrEmpty(model?.Content))
-        //        query = query.Where(x => x.Content.ToLower().Contains(model.Content.ToLower()));
         //    query = query.Where(x => x.PostId == PostId);
         //    query.Where(x => x.PostId == PostId).Select(x => x.Profile.FirstName);
-
         //    var res = query.Include(x => x.Profile).ThenInclude(z => z.Posts).ToList();
 
         //    return _mapper.Map<IEnumerable<PostLikeViewModel>>(res);

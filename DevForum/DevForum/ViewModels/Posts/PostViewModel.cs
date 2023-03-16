@@ -23,6 +23,6 @@ namespace DevForum.ViewModels.Posts
         public virtual SubtopicViewModel Subtopic { get; set; }
 
         //public virtual IEnumerable<PostReply> PostReplies { get; set; }
-        //public virtual IEnumerable<PostLike> PostLikes { get; set; }
+        //public virtual IEnumerable<Models.PostLike> PostLikes { get; set; }
     }
 }

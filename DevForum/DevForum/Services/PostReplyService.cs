@@ -26,14 +26,8 @@ namespace DevForum.Services
         {
            
             var entity = _mapper.Map<PostReply>(model);
-            var posts = _applicationDbContext.Set<Post>();
-            //foreach (var p in posts)
-            //{
-            //    if (p.Id == entity.PostId)
-            //    {
-            //        p.ReplyCount++;
-            //    }
-            //}
+            var posts = _applicationDbContext.Set<Post>().FirstOrDefault(x=>x.Id == entity.PostId);
+            posts.ReplyCount++;
             await _applicationDbContext.AddAsync(entity);
             await _applicationDbContext.SaveChangesAsync();
             
@@ -51,6 +45,8 @@ namespace DevForum.Services
         public async Task Delete(int id)
         {
             var entity = _applicationDbContext.Set<PostReply>().Find(id);
+            var posts = _applicationDbContext.Set<Post>().FirstOrDefault(x => x.Id == entity.PostId);
+            posts.ReplyCount--;
             _applicationDbContext.Remove(entity);
             await _applicationDbContext.SaveChangesAsync();
         }
@@ -64,15 +60,13 @@ namespace DevForum.Services
         }
         public IEnumerable<PostReplyViewModel> Get(int PostId, PostReplySearchObject model = null)
         {
-            var reply = _applicationDbContext.Set<Post>().Find(PostId);
             var query = _applicationDbContext.Set<PostReply>().AsQueryable();
             if (!String.IsNullOrEmpty(model?.Content))
                 query = query.Where(x => x.Content.ToLower().Contains(model.Content.ToLower()));
             query = query.Where(x => x.PostId == PostId);
             query.Where(x => x.PostId == PostId).Select(x => x.Profile.FirstName);
 
-            var res = query.Include(x => x.Profile).ThenInclude(z => z.Posts).ToList();
-            reply.ReplyCount = res.Count();
+            var res = query.Include(x => x.Profile).Include(z => z.Post).ToList();
 
             _applicationDbContext.SaveChanges();
             return _mapper.Map<IEnumerable<PostReplyViewModel>>(res);
