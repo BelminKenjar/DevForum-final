@@ -6,10 +6,13 @@ import {environment} from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class PostLikeService {
-
+export class PostReplyLikeService {
   constructor(private _http: HttpClient) { }
-  PostPostLike(model: any): Observable<any> {
-    return this._http.post(`${environment.apiUrl}/PostLike`, model);
+  InsertPostReplyLike(model: any): Observable<any> {
+    return this._http.post(`${environment.apiUrl}/PostReplyLike`, model);
+  }
+
+  GetPostReplyLike(): Observable<any> {
+    return this._http.get(`${environment.apiUrl}/PostReplyLike`);
   }
 }
