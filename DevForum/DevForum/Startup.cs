@@ -80,7 +80,6 @@ namespace DevForum
             services.AddScoped<IPostService, PostService>();
             services.AddScoped<IPostReplyService, PostReplyService>();
             services.AddScoped<IPostLikeService, PostLikeService>();
-            services.AddScoped<IPostReplyLikeService, PostReplyLikeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

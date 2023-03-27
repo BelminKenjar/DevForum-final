@@ -6,6 +6,7 @@ namespace DevForum.Models
     {
         public int Id { get; set; }
         public DateTime CreatedAt { get; set; }
+
         public int? PostReplyId { get; set; }
         public virtual PostReply PostReply { get; set; }
         public int? ProfileId { get; set; }
