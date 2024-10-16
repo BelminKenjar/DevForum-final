@@ -38,6 +38,9 @@ namespace DevForum
             //        options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             //        options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             //    });
+
+            services.AddTransient<IMyEmailSender, MyEmailSender>();
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));

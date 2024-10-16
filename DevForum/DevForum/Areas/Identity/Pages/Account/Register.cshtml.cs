@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using DevForum.Data;
+using DevForum.Services;
 
 namespace DevForum.Areas.Identity.Pages.Account
 {
@@ -26,16 +27,21 @@ namespace DevForum.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly ApplicationDbContext _applcationDbContext;
+        private readonly IMyEmailSender _myEmailSender;
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender, ApplicationDbContext applicationDbContext)
+            IEmailSender emailSender,
+            IMyEmailSender myEmailSender,
+            ApplicationDbContext applicationDbContext
+            )
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _myEmailSender = myEmailSender;
             _applcationDbContext = applicationDbContext;
         }
 
@@ -88,7 +94,7 @@ namespace DevForum.Areas.Identity.Pages.Account
                 var user = new ApplicationUser { 
                     UserName = Input.Email,
                     Email = Input.Email,
-                    EmailConfirmed = true 
+                    EmailConfirmed = false 
                 };
                 var profile = new Profile { 
                     FirstName = Input.FirstName, 
@@ -121,7 +127,7 @@ namespace DevForum.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                    _myEmailSender.SendEmail(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
