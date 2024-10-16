@@ -9,5 +9,6 @@ namespace DevForum.Services.Interfaces
     public interface IPostReplyLikeService
     {
         Task<PostReplyLikeViewModel> Insert(PostReplyLikeInsertModel model);
+        //Task<PostReplyLikeViewModel> GetById(int id);
     }
 }

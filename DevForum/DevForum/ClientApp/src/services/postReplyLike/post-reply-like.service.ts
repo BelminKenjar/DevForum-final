@@ -12,7 +12,7 @@ export class PostReplyLikeService {
     return this._http.post(`${environment.apiUrl}/PostReplyLike`, model);
   }
 
-  GetPostReplyLike(): Observable<any> {
-    return this._http.get(`${environment.apiUrl}/PostReplyLike`);
-  }
+  // GetPostReplyLikeByPostId(id: number): Observable<any> {
+  //   return this._http.get(`${environment.apiUrl}/PostReplyLike`);
+  // }
 }

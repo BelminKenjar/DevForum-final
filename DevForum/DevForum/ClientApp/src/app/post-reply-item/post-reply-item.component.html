@@ -37,11 +37,9 @@
             <div class="text-muted text-center align-self-center">
               <p class="mb-0">{{postReply.likeCount}}</p>
               <a><i class="fa fa-thumbs-down"
-                    (click)="PostReplyLike(postReply.id)"
-                    (click)=" postReply.likeCount = postReply.likeCount - 1"></i> | </a>
+                    (click)="PostReplyLike(postReply.id); postReply.likeCount = postReply.likeCount - 1"></i> | </a>
               <a><i class="fa fa-thumbs-up"
-                    (click)="PostReplyLike(postReply.id)"
-                    (click)=" postReply.likeCount = postReply.likeCount + 1"></i></a>
+                    (click)="PostReplyLike(postReply.id); postReply.likeCount = postReply.likeCount + 1"></i></a>
             </div>
           </div>
         </div>

@@ -38,6 +38,6 @@ export class PostItemComponent implements OnInit {
     profileId = this.profile.id;
     model = {postid, profileId};
     this.postLikeService.PostPostLike(model).subscribe(data => data);
-    return location.reload();
+    // return location.reload();
   }
 }

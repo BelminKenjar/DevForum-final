@@ -61,5 +61,14 @@ namespace DevForum.Services
             await _applicationDbContext.SaveChangesAsync();
             return _mapper.Map<PostReplyLikeViewModel>(entity);
         }
+
+        //public async Task<PostReplyLikeViewModel> GetById(int id)
+        //{
+        //    var entity = _applicationDbContext.Set<PostReplyLike>()
+        //                       .Include(x => x.PostReply)
+        //                       .Include(x => x.Profile)
+        //                       .Where(x => x.PostReplyId == id).ToList();
+        //    return _mapper.Map<PostReplyLikeViewModel>(entity);
+        //}
     }
 }

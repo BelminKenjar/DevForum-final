@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ProfileService} from '../../services/profile/profile.service';
 import {PostReplyLikeService} from '../../services/postReplyLike/post-reply-like.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-post-reply-item',
@@ -14,6 +15,8 @@ export class PostReplyItemComponent implements OnInit {
   @Output() postReplyItem = new EventEmitter<any>();
   @Output() postReplyItemId = new EventEmitter<any>();
   profile: any;
+  likes: any[];
+
 
   constructor(private profileService: ProfileService,
               private postReplyLikeService: PostReplyLikeService ) { }

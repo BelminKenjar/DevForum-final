@@ -27,5 +27,10 @@ namespace DevForum.Controllers
         {
             return await _postReplyLikeService.Insert(model);
         }
+
+        //public async Task<PostReplyLikeViewModel> GetById(int id)
+        //{
+        //    return await _postReplyLikeService.GetById(id);
+        //}
     }
 }

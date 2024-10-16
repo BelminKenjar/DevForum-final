@@ -50,7 +50,7 @@
             <div style="width: 20px"></div>
             <div class="text-muted text-center align-self-center">
               <p class="mb-0">{{post.likeCount}}</p>
-              <a><i class="fa fa-thumbs-up" (click)="PostLike(post.id)"></i></a>
+              <a><i class="fa fa-thumbs-up" (click)="PostLike(post.id); post.likeCount = post.likeCount + 1"></i></a>
             </div>
           </div>
         </div>
