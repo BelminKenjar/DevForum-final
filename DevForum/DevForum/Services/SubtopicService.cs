@@ -36,6 +36,10 @@ namespace DevForum.Services
                 query = query.Where(x => x.Name.ToLower().Contains(model.Title.ToLower()));
             query = query.Where(x => x.TopicId == topicId);
             var res = query.Include(x => x.Topic).ToList();
+            foreach ( var subtopic in query)
+            {
+                subtopic.PostCount = _applicationDbContext.Posts.Where(x=>x.SubTopicId == subtopic.Id).Count();
+            }
             return _mapper.Map<IEnumerable<SubtopicViewModel>>(res);
         }
 

@@ -9,6 +9,8 @@ namespace DevForum.ViewModels.Subtopic
     {
         public string Name { get; set; }
         public string Description { get; set; }
+        public int PostCount { get; set; }
+
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public int TopicId { get; set; }
         public int ProfileId { get; set; }
