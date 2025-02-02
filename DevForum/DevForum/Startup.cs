@@ -1,4 +1,5 @@
 using DevForum.Data;
+using DevForum.Hubs;
 using DevForum.Models;
 using DevForum.Services;
 using DevForum.Services.Interfaces;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -31,13 +33,6 @@ namespace DevForum
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddControllers()
-            //    .AddNewtonsoftJson(options =>
-            //    {
-            //        // Use the default property (Pascal) casing
-            //        options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            //        options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-            //    });
 
             services.AddTransient<IMyEmailSender, MyEmailSender>();
 
@@ -67,6 +62,7 @@ namespace DevForum
             services.AddControllersWithViews();
             services.AddControllers().AddNewtonsoftJson();
             services.AddRazorPages();
+            services.AddSignalR();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -101,6 +97,7 @@ namespace DevForum
                 app.UseHsts();
             }
 
+            app.UseBrowserLink();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             if (!env.IsDevelopment())
@@ -113,6 +110,10 @@ namespace DevForum
             app.UseAuthentication();
             app.UseIdentityServer();
             app.UseAuthorization();
+            app.UseEndpoints(options =>
+            {
+                options.MapHub<MessageHub>("/MessageHub");
+            });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

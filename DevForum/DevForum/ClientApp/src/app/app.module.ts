@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
+import { ChatComponent } from './chat/chat.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
@@ -46,6 +47,7 @@ import { PostReplyFormComponent } from './post-reply-form/post-reply-form.compon
     AppComponent,
     NavMenuComponent,
     HomeComponent,
+    ChatComponent,
     CounterComponent,
     FetchDataComponent,
     ProfileComponent,
