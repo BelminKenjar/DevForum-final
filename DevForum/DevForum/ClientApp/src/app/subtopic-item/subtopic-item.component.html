@@ -12,9 +12,9 @@
               </h4>
               <span *ngIf="isAdmin" style="font-size: 1.3rem">
                 <span class="text-muted"> | </span>
-                <a class="editLink" (click)="GetItem(subtopic)"> Edit</a>
+                <a class="editLink" (click)="GetItem(subtopic)"> {{ 'edit' | translate }}</a>
                 <span class="text-muted"> | </span>
-                <a class="editLink" (click)="DeleteTopic(subtopic.id)"> Delete</a>
+                <a class="editLink" (click)="DeleteTopic(subtopic.id)"> {{ 'delete' | translate }}</a>
               </span>
               <p class="text-secondary">
                 {{subtopic.description}}
@@ -23,7 +23,7 @@
             <div style="width: 50px"></div>
             <div class="text-muted text-center align-self-center">
               <p class="mb-0">{{ subtopic.postCount }}</p>
-              <p>Posts</p>
+              <p>{{ 'posts' | translate }}</p>
             </div>
           </div>
         </div>

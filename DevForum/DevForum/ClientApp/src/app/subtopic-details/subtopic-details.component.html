@@ -5,8 +5,8 @@
         <h1>{{subtopic.name}}</h1>
       </div>
       <div class="col-lg-1 mb-3 p-0">
-        <div *ngIf="isAdmin" class="mt-1" style="float: right">
-          <button class="btn btn-lg btn-primary" (click)="open(mymodal, null, true)">Add</button>
+        <div *ngIf="profile" class="mt-1" style="float: right">
+          <button class="btn btn-lg btn-primary" (click)="open(mymodal, null, true)">{{ 'add' | translate }}</button>
         </div>
       </div>
     </div>
@@ -29,7 +29,7 @@
 <ng-template #mymodal let-modal>
   <div class="modal-content">
     <div class="modal-header">
-      <div style="float: left"><h4>Add Post</h4></div>
+      <div style="float: left"><h4>{{ 'add post' | translate }}</h4></div>
       <div style="float: right">
         <button type="button"
                 class="close btn"

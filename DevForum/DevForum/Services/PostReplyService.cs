@@ -27,6 +27,9 @@ namespace DevForum.Services
            
             var entity = _mapper.Map<PostReply>(model);
             var posts = _applicationDbContext.Set<Post>().FirstOrDefault(x=>x.Id == entity.PostId);
+            var profileEntity = _applicationDbContext.ProfileStats.FirstOrDefault(x => x.ProfileId == entity.ProfileId);
+            profileEntity.PostsCommented++;
+            _applicationDbContext.Update(profileEntity);
             posts.ReplyCount++;
             await _applicationDbContext.AddAsync(entity);
             await _applicationDbContext.SaveChangesAsync();

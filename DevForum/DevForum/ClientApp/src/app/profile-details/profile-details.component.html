@@ -2,12 +2,12 @@
   <div class="card-body">
     <div class="row">
       <div class="pl-4">
-        <h4>Edit profile details</h4>
+        <h4>{{ 'edit profile details' | translate }}</h4>
       </div>
       <form [formGroup]="detailsForm" (ngSubmit)="onSubmit()" class="p-4" style="width: 100%;">
         <div class="row mb-3">
           <div class="col-sm-3">
-            <h6 class="mb-0 mt-2">Age</h6>
+            <h6 class="mb-0 mt-2">{{ 'age' | translate }}</h6>
           </div>
           <div class="form-floating col-sm-9">
             <input type="text"
@@ -18,7 +18,7 @@
         </div>
         <div class="row mb-3">
           <div class="col-sm-3">
-            <h6 class="mb-0 mt-2">City</h6>
+            <h6 class="mb-0 mt-2">{{ 'city' | translate }}</h6>
           </div>
           <div class="form-floating col-sm-9">
             <input type="text"
@@ -29,7 +29,7 @@
         </div>
         <div class="row mb-3">
           <div class="col-sm-3">
-            <h6 class="mb-0 mt-2">Country</h6>
+            <h6 class="mb-0 mt-2">{{ 'country' | translate }}</h6>
           </div>
           <div class="form-floating col-sm-9">
             <input type="text"
@@ -51,7 +51,7 @@
         </div>
         <div class="row mb-3">
           <div class="col-sm-3">
-            <h6 class="mb-0 mt-2">Linekdin</h6>
+            <h6 class="mb-0 mt-2">LinkedIn</h6>
           </div>
           <div class="form-floating col-sm-9">
             <input type="text"
@@ -84,7 +84,7 @@
         </div>
         <div class="row mb-3">
           <div class="col-sm-3">
-            <h6 class="mb-0 mt-2">Website</h6>
+            <h6 class="mb-0 mt-2">{{ 'website' | translate }}</h6>
           </div>
           <div class="form-floating col-sm-9">
             <input type="text"
@@ -98,7 +98,7 @@
           </div>
           <div class="col-sm-9">
             <button class="btn btn-primary fw-bold p-2 mt-3" style="float: right" type="submit">
-              Save Changes
+              {{ 'save changes' | translate }}
             </button>
           </div>
         </div>

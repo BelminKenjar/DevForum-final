@@ -14,13 +14,13 @@
     <textarea class="form-control" placeholder="Content" formControlName="Content" rows="20" style="height: 200px"></textarea>
     <span *ngIf="f.Content.dirty && f.Content.errors?.required"
           class="text-danger">
-      Content is required!
+      {{ 'content is required' | translate }}
     </span>
-    <label for="floatingContent" class="text-muted">Content</label>
+    <label for="floatingContent" class="text-muted">{{ 'content' | translate }}</label>
   </div>
   <div class="d-grid">
     <button class="btn btn-primary btn-login fw-bold p-2 mt-3" type="submit">
-      Save
+      {{ 'save' | translate }}
     </button>
   </div>
 </form>

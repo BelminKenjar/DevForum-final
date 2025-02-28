@@ -6,24 +6,24 @@
            formControlName="title" />
     <span *ngIf="f.title.dirty && f.title.errors?.required"
           class="text-danger">
-      Title is required!
+      {{ 'title is required' | translate }}
     </span>
-    <label for="floatingTitle" class="text-muted">Title</label>
+    <label for="floatingTitle" class="text-muted">{{ 'title' | translate }}</label>
   </div>
   <div class="form-floating mb-3">
     <textarea class="form-control" placeholder="Description" formControlName="description" rows="20" style="height: 200px"></textarea>
     <span *ngIf="f.description.dirty && f.description.errors?.required"
           class="text-danger">
-      Description is required!
+      {{ 'description is required' | translate }}
     </span>
-    <label for="floatingContent" class="text-muted">Description</label>
+    <label for="floatingContent" class="text-muted">{{ 'description' | translate }}</label>
   </div>
   <label class="btn btn-primary">
-    Upload Image <input type="file" hidden (change)="FileInputChange($event)">
+    {{ 'upload image' | translate }} <input type="file" hidden (change)="FileInputChange($event)">
   </label>
   <div class="d-grid">
     <button class="btn btn-primary btn-login fw-bold p-2 mt-3" type="submit">
-      Save
+      {{ 'save' | translate }}
     </button>
   </div>
 </form>

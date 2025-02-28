@@ -4,11 +4,11 @@
 <div class="container mb-5">
   <div class="row d-flex mb-4 mt-3">
     <div class="col-lg-11">
-      <h1>DevForum News</h1>
+      <h1>DevForum {{ 'news' | translate }}</h1>
     </div>
     <div class="col-lg-1">
       <div *ngIf="isAdmin" class="mt-1">
-        <button class="btn btn-lg btn-primary" (click)="open(mymodal, null, true)">Add</button>
+        <button class="btn btn-lg btn-primary" (click)="open(mymodal, null, true)">{{ 'add' | translate }}</button>
       </div>
     </div>
   </div>

@@ -6,25 +6,33 @@
           <div class="media">
 
             <div class="text-center align-self-center">
-              <p>Profile: {{postReply.profile.firstName}} {{postReply.profile.lastName}}</p>
+              <p>{{ 'profile' | translate }}: {{postReply.profile.firstName}} {{postReply.profile.lastName}}</p>
               <img *ngIf="postReply.profile.image" src="data:image/jpeg;base64,{{postReply.profile.image}}" alt="" class="rounded-circle p-1 bg-primary" width="180" height="180">
               <img *ngIf="!postReply.profile.image"
                    src="../../assets/defaultUserImage.png"
                    alt="" class="rounded-circle p-1 bg-primary" width="180" height="180">
               <br>
               <small>
-                <i class="far fa-calendar-alt"></i><p class="d-inline" > Created at: {{postReply.createdAt | date:"medium"}}</p><br>
-                <i class="far fa-calendar-alt"></i><p class="d-inline"> Edited at: {{postReply.editedAt | date: "medium"}}</p>
+                <i class="far fa-calendar-alt"></i><p class="d-inline" > {{ 'created' | translate }}: {{postReply.createdAt | date:"medium"}}</p><br>
+                <i class="far fa-calendar-alt"></i><p class="d-inline"> {{ 'edited' | translate }}: {{postReply.editedAt | date: "medium"}}</p>
             </small>
             </div>
             <div style="width: 50px"></div>
             <div class="media-body">
               <span *ngIf="isAdmin" style="font-size: 1.3rem">
                 <span class="text-muted"> | </span>
-                <a class="editLink" (click)="GetItem(postReply)"> Edit</a>
+                <a class="editLink" (click)="GetItem(postReply)"> {{ 'edit' | translate }}</a>
                 <span class="text-muted"> | </span>
-                <a class="editLink" (click)="DeletePostReply(postReply.id)"> Delete</a>
+                <a class="editLink" (click)="DeletePostReply(postReply.id)"> {{ 'delete' | translate }}</a>
               </span>
+              <div *ngIf="logged && !isAdmin">
+              <span *ngIf="profile.applicationUserId == postReply.profile.applicationUserId" style="font-size: 1.3rem">
+                <span class="text-muted"> | </span>
+                <a class="editLink" (click)="GetItem(postReply)"> {{ 'edit' | translate }}</a>
+                <span class="text-muted"> | </span>
+                <a class="editLink" (click)="DeletePostReply(postReply.id)"> {{ 'delete' | translate }}</a>
+              </span>
+              </div>
               <p>
                 <!--                <a routerLink="/topics/{{subtopic.id}}">{{subtopic.name}}</a>-->
                 {{postReply.content}}

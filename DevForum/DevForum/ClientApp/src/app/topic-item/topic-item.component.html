@@ -12,9 +12,9 @@
             <h4 class="d-inline"><a routerLink="/topics/{{topic.id}}">{{topic.title}}</a></h4>
             <span *ngIf="isAdmin" style="font-size: 1.3rem">
               <span class="text-muted"> | </span>
-              <a class="editLink" (click)="GetItem(topic)"> Edit</a>
+              <a class="editLink" (click)="GetItem(topic)"> {{ 'edit' | translate }}</a>
               <span class="text-muted"> | </span>
-              <a class="editLink" (click)="DeleteTopic(topic.id)"> Delete</a>
+              <a class="editLink" (click)="DeleteTopic(topic.id)"> {{ 'delete' | translate }}</a>
             </span>
             <p class="text-secondary">
               {{topic.description}}
@@ -23,7 +23,7 @@
           <div style="width: 50px"></div>
           <div class="text-muted text-center align-self-center">
             <p class="mb-0">{{topic.subTopicCount}}</p>
-            <p>Subtopics</p>
+            <p>{{ 'subtopics' | translate }}</p>
           </div>
         </div>
       </div>

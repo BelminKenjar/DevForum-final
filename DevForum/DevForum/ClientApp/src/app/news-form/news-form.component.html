@@ -6,21 +6,21 @@
            formControlName="title" />
     <span *ngIf="f.title.dirty && f.title.errors?.required"
           class="text-danger">
-      Title is required!
+      {{ 'title is required' | translate }}
     </span>
-    <label for="floatingTitle" class="text-muted">Title</label>
+    <label for="floatingTitle" class="text-muted">{{ 'title' | translate }}</label>
   </div>
   <div class="form-floating mb-3">
     <textarea class="form-control" placeholder="Content" formControlName="content" rows="50" style="height: 400px"></textarea>
     <span *ngIf="f.content.dirty && f.content.errors?.required"
           class="text-danger">
-      Content is required!
+      {{ 'content is required' | translate }}
     </span>
-    <label for="floatingContent" class="text-muted">Content</label>
+    <label for="floatingContent" class="text-muted">{{ 'content' | translate }}</label>
   </div>
   <div class="d-grid">
     <button class="btn btn-primary btn-login fw-bold p-2 mt-3" type="submit">
-      Save
+      {{ 'save' | translate }}
     </button>
   </div>
 </form>

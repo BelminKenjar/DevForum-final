@@ -15,6 +15,7 @@ export class PostReplyItemComponent implements OnInit {
   @Output() postReplyItem = new EventEmitter<any>();
   @Output() postReplyItemId = new EventEmitter<any>();
   profile: any;
+  logged: boolean;
   likes: any[];
 
 
@@ -22,7 +23,11 @@ export class PostReplyItemComponent implements OnInit {
               private postReplyLikeService: PostReplyLikeService ) { }
 
   ngOnInit() {
-    this.profileService.GetUserProfile().subscribe((x: any) => { this.profile = x; });
+    this.profileService.GetUserProfile().subscribe((x: any) => {
+      this.profile = x;
+      if(x)
+        this.logged = true;
+    });
   }
 
   GetItem = (item: any) => {

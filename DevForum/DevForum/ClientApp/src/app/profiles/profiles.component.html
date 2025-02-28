@@ -1,6 +1,6 @@
 <ngx-spinner></ngx-spinner>
 <div *ngIf="profiles">
-<h3 class="mb-5 mt-2">DevForum Users</h3>
+<h3 class="mb-5 mt-2">{{ 'devforum users' | translate }}</h3>
 <app-profile-item [profiles]="profiles"></app-profile-item>
 <app-pagination class="mb-5"
   *ngIf="profiles"

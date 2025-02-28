@@ -9,7 +9,7 @@
               (click)="OnPrev()"
               [disabled]="page === 1 || loading"
               [ngClass]="{ disabled: page === 1 || loading }">
-        Previous
+        {{ 'previous' | translate }}
       </button>
       <button class="btn btn-sm btn-pageNum"
               *ngFor="let pageNum of GetPages()"
@@ -22,7 +22,7 @@
               (click)="OnNext()"
               [disabled]="IsLastPage() || loading"
               [ngClass]="{ disabled: LastPage || loading }">
-        Next
+        {{ 'next' | translate }}
       </button>
     </div>
   </div>

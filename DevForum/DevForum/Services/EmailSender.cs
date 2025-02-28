@@ -6,21 +6,18 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using System.Web.Http.Results;
 
 namespace DevForum.Services
 {
-    public interface IMyEmailSender
-    {
-        void SendEmail(string email, string subject, string HtmlMessage);
-    }
-    public class MyEmailSender : IMyEmailSender
+    public class MyEmailSender : Microsoft.AspNetCore.Identity.UI.Services.IEmailSender
     {
         public IConfiguration Configuration { get; }
         public MyEmailSender(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-        public void SendEmail(string email, string subject, string HtmlMessage)
+        public Task SendEmailAsync(string email, string subject, string HtmlMessage)
         {
             using (MailMessage mm = new MailMessage(Configuration["NetMail:sender"], email))
             {
@@ -36,6 +33,7 @@ namespace DevForum.Services
                 smtp.Credentials = NetworkCred;
                 smtp.Port = 587;
                 smtp.Send(mm);
+                return Task.CompletedTask;
             }
         }
     }

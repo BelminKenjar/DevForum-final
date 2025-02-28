@@ -4,7 +4,7 @@ body{
 .container{
   display: flex;
   flex-direction: column;
-  align-items: end;
+  align-items: flex-end;
 }
 .messaging {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
@@ -32,12 +32,12 @@ body{
 }
 .received_msg{
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   padding-right: 10px;
 }
 .outgoing_msg{
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   padding-left: 10px;
 }
 .received_withd_msg{

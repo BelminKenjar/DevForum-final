@@ -24,6 +24,9 @@ namespace DevForum.Services
         public async Task<PostViewModel> Insert(PostInsertModel model)
         {
             var entity = _mapper.Map<Post>(model);
+            var profileEntity = _applicationDbContext.ProfileStats.FirstOrDefault(x => x.ProfileId == model.ProfileId);
+            profileEntity.PostsCreated++;
+            _applicationDbContext.Update(profileEntity);
             await _applicationDbContext.AddAsync(entity);
             await _applicationDbContext.SaveChangesAsync();
             return _mapper.Map<PostViewModel>(entity);
@@ -39,6 +42,11 @@ namespace DevForum.Services
         public async Task Delete(int id)
         {
             var entity = _applicationDbContext.Set<Post>().Find(id);
+            var replyEntity = _applicationDbContext.Set<PostReply>().Where(x=>x.PostId == id).ToList();
+            foreach(var reply in replyEntity)
+            { 
+            _applicationDbContext.Remove(reply);
+            }
             _applicationDbContext.Remove(entity);
             await _applicationDbContext.SaveChangesAsync();
         }

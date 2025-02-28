@@ -34,7 +34,7 @@ namespace DevForum
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddTransient<IMyEmailSender, MyEmailSender>();
+            services.AddTransient<Microsoft.AspNetCore.Identity.UI.Services.IEmailSender, MyEmailSender>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS, HttpClient} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -41,6 +41,13 @@ import { PostDetailsComponent } from './post-details/post-details.component';
 import { PostReplyComponent } from './post-reply/post-reply.component';
 import { PostReplyItemComponent } from './post-reply-item/post-reply-item.component';
 import { PostReplyFormComponent } from './post-reply-form/post-reply-form.component';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -86,6 +93,13 @@ import { PostReplyFormComponent } from './post-reply-form/post-reply-form.compon
     ApiAuthorizationModule,
     FormsModule,
     ReactiveFormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'profile', component: ProfileComponent, canActivate: [AuthorizeGuard] },
@@ -100,7 +114,8 @@ import { PostReplyFormComponent } from './post-reply-form/post-reply-form.compon
     ])
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
+    HttpClient,
   ],
   bootstrap: [AppComponent]
 })

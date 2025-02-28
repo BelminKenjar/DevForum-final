@@ -14,8 +14,8 @@
         <div class="row mt-2">
           <p>{{item.content}}</p>
         </div>
-        <small class="text-muted"> Written by {{item.profile.firstName}} {{item.profile.lastName}} </small>
-        <small class="text-muted"> | <i class="far fa-calendar-alt"></i> Created: {{item.createdAt.substr(0, 10)}}</small>
+        <small class="text-muted"> {{ 'written by' | translate }} {{item.profile.firstName}} {{item.profile.lastName}} </small>
+        <small class="text-muted"> | <i class="far fa-calendar-alt"></i> {{ 'created' | translate }}: {{item.createdAt.substr(0, 10)}}</small>
       </div>
     </div>
   </div>

@@ -18,12 +18,17 @@ export class PostItemComponent implements OnInit {
   @Output() postItem = new EventEmitter<any>();
   @Output() postItemId = new EventEmitter<any>();
   profile: any;
+  logged: boolean;
   constructor(private postLikeService: PostLikeService,
               private profileService: ProfileService,
               ) { }
 
   ngOnInit() {
-    this.profileService.GetUserProfile().subscribe((x: any) => { this.profile = x; });
+    this.profileService.GetUserProfile().subscribe((x: any) => {
+      this.profile = x;
+      if(x)
+        this.logged = true;
+    });
   }
 
   GetItem = (item: any) => {

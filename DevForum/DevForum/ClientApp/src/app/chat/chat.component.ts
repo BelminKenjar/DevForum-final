@@ -10,7 +10,7 @@ import {ProfileService} from '../../services/profile/profile.service';
 })
 export class ChatComponent {
   title = 'ChatApp';
-  txtMessage  = 'Type a message';
+  txtMessage  = '';
   uniqueID: string = new Date().getTime().toString();
 
   guestName = '';

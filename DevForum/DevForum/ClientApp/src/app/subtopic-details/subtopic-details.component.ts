@@ -17,21 +17,22 @@ import {getLocaleDateFormat} from '@angular/common';
 })
 export class SubtopicDetailsComponent implements OnInit {
 
-  posts: any
-  subtopic: any
-  isAdmin: boolean
+  posts: any;
+  subtopic: any;
+  isAdmin: boolean;
+  profile: any;
   modalOptions = {
     size: 'lg'
-  }
-  closeResult: string
+  };
+  closeResult: string;
 
-  page: number = 1;
+  page = 1;
   limit = 5;
-  total: number = 0;
+  total = 0;
 
   searchObject = {
     Name: ''
-  }
+  };
   constructor(private route: ActivatedRoute,
               private postService: PostService,
               private subtopicService: SubtopicService,
@@ -43,7 +44,8 @@ export class SubtopicDetailsComponent implements OnInit {
     this.userService.IsAdmin().subscribe(data => {
       if (data)
         this.isAdmin = data;
-    })
+    });
+    this.profileService.GetUserProfile().subscribe(data => { this.profile = data; });
     let id = this.route.snapshot.params['id'];
     this.subtopicService.GetSubtopicById(id).subscribe(data => {
       this.subtopic = data;
