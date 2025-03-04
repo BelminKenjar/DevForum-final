@@ -32,10 +32,8 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
-
   </div>
   <div class="type_msg">
     <div class="input_msg_write">
@@ -45,9 +43,11 @@
              (input)="txtMessage=$event.target.value"
              (keydown.enter)="sendMessage()"
              placeholder= "{{'type a message' | translate}} "/>
-      <button class="msg_send_btn" type="button" (click)="sendMessage()">
-        <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-      </button>
     </div>
+      <div>
+        <button class="msg_send_btn" type="button" (click)="sendMessage()">
+          <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+       </button>
+     </div>
   </div>
 </div>

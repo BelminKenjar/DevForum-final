@@ -43,6 +43,8 @@ import { PostReplyItemComponent } from './post-reply-item/post-reply-item.compon
 import { PostReplyFormComponent } from './post-reply-form/post-reply-form.component';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {AgmCoreModule} from '@agm/core';
+import { GooglePlaceComponent } from './google-place/google-place.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -82,9 +84,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     PostReplyComponent,
     PostReplyItemComponent,
     PostReplyFormComponent,
+    GooglePlaceComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDzFSjDGVZlVY7PhirnaMntCRc8wSxkCJI',
+      libraries: ['places', 'drawing', 'geometry']
+    }),
     HttpClientModule,
     FormsModule,
     NgbModule,
@@ -111,12 +118,12 @@ export function HttpLoaderFactory(http: HttpClient) {
       { path: 'subtopics/:id', component: SubtopicDetailsComponent },
       { path: 'post', component: PostComponent },
       { path: 'post/:id', component: PostDetailsComponent }
-    ])
+    ]),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
     HttpClient,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
